@@ -765,7 +765,7 @@
     <div class="chat-container">
         <div class="chat-messages" id="chatMessages">
             <div class="welcome-message">
-                <h2>¡Bienvenida a Diana Padilla Estética & Spa! ✨</h2>
+                <h2>¡Bienvenida a Diana Padilla Spa! ✨</h2>
                 <p>Soy tu asistente virtual inteligente. Puedo ayudarte con servicios, precios, horarios, ubicación y agendar tu cita perfecta.</p>
                 <div class="quick-actions">
                     <div class="quick-action" onclick="sendQuickMessage('servicios')">🎨 Ver Servicios</div>
@@ -1013,12 +1013,15 @@
                     // Si la respuesta requiere opciones interactivas
                     if (typeof response === 'object' && response.message && response.options) {
                         addBotMessageWithOptions(response.message, response.options);
-                    } else {
+                    } else if (response) {
                         addBotMessage(response);
+                    } else {
+                        addBotMessage("Lo siento, no pude procesar tu solicitud. ¿Puedes intentar con otra pregunta? 😊");
                     }
                 } catch (error) {
                     showTyping(false);
-                    addBotMessage("Lo siento, hubo un error. Por favor intenta de nuevo.");
+                    addBotMessage("¡Hola! 😊 Soy tu asistente de Diana Padilla Estética y Spa. ¿En qué puedo ayudarte?");
+                    console.error('Error:', error);
                 }
             }, 1200);
         }
@@ -1042,12 +1045,14 @@
                     // Si la respuesta requiere opciones interactivas
                     if (typeof response === 'object' && response.message && response.options) {
                         addBotMessageWithOptions(response.message, response.options);
-                    } else {
+                    } else if (response) {
                         addBotMessage(response);
+                    } else {
+                        addBotMessage("Lo siento, no pude procesar tu solicitud. ¿Puedes intentar con otra pregunta? 😊");
                     }
                 } catch (error) {
                     showTyping(false);
-                    addBotMessage("Lo siento, hubo un error. Por favor intenta de nuevo. 😊");
+                    addBotMessage("¡Hola! 😊 Soy tu asistente de Diana Padilla Estética y Spa. ¿En qué puedo ayudarte?");
                     console.error('Error:', error);
                 }
             }, 1200);
@@ -1564,7 +1569,19 @@
                 
             } catch (error) {
                 console.error('Claude API Error:', error);
-                return getLocalFallbackResponse(userMessage);
+                // Fallback más robusto
+                if (message.includes('precio') || message.includes('precios')) {
+                    return `💰 **Nuestros precios principales:**\n\n✂️ **Cortes:** Dama $5, Hombre $4\n💅 **Manicura:** Desde $4\n👁️ **Microblading:** $70\n✨ **Faciales:** Desde $25\n🌿 **Masajes:** $20\n\n<button class="whatsapp-btn" onclick="agendarCitaWhatsApp()">📱 Agendar por WhatsApp</button>`;
+                } else if (message.includes('servicio') || message.includes('servicios')) {
+                    const opciones = Object.keys(spaInfo.servicios).map(key => 
+                        `<div class="option-btn" onclick="showCategoriaServicios('${key}')">${spaInfo.servicios[key].nombre}</div>`
+                    ).join('');
+                    
+                    addBotMessageWithOptions("🎨 **Nuestros servicios por categorías:**\n\nSelecciona la categoría que te interesa:", opciones);
+                    return;
+                } else {
+                    return getLocalFallbackResponse(userMessage);
+                }
             }
         }
 
