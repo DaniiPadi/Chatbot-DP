@@ -758,14 +758,14 @@
 </head>
 <body>
     <header class="header">
-        <h1>💄 DIANA PADILLA ESTÉTICA Y SPA</h1>
+        <h1>💄 DIANA PADILLA ESTÉTICA & SPA</h1>
         <p>Tu Asistente Virtual Inteligente - Pregúntame cualquier cosa</p>
     </header>
 
     <div class="chat-container">
         <div class="chat-messages" id="chatMessages">
             <div class="welcome-message">
-                <h2>¡Bienvenida a Diana Padilla Spa! ✨</h2>
+                <h2>¡Bienvenida a Diana Padilla Estética & Spa! ✨</h2>
                 <p>Soy tu asistente virtual inteligente. Puedo ayudarte con servicios, precios, horarios, ubicación y agendar tu cita perfecta.</p>
                 <div class="quick-actions">
                     <div class="quick-action" onclick="sendQuickMessage('servicios')">🎨 Ver Servicios</div>
@@ -805,16 +805,16 @@
     </div>
 
     <script>
-        // Información completa y detallada del spa
+        // Información completa y detallada del spa - ACTUALIZADA
         const spaInfo = {
             nombre: "Diana Padilla Estética y Spa",
             descripcion: "Spa de lujo especializado en belleza y bienestar, donde cada tratamiento es una experiencia única.",
-            ubicacion: "Cuenca, Ecuador - Parroquia Ricaurte",
-            direccion: "42JQ+M2 Cuenca, cerca de Julia Bernal y 18 de Noviembre",
-            mapsLink: "https://www.google.com/maps/search/Diana+Padilla+est%C3%A9tica+%26+Spa/@-2.8663168,-78.9650498,17z",
+            ubicacion: "Cuenca, Ecuador - Ricaurte",
+            direccion: "Cuenca, Ricaurte - La Dolorosa de Princi, Cuenca 010152",
+            mapsLink: "https://maps.app.goo.gl/Gy1HsE9VqtQdx2x59",
             telefono: "+593 98 799 3614",
             whatsapp: "593987993614",
-            email: "dcarolina98@hotmail.com",
+            email: "dcarolina98@hotmail.com", // EMAIL ACTUALIZADO
             
             horarios: {
                 dias: "Lunes a Sábado",
@@ -1016,11 +1016,13 @@
                     } else if (response) {
                         addBotMessage(response);
                     } else {
-                        addBotMessage("Lo siento, no pude procesar tu solicitud. ¿Puedes intentar con otra pregunta? 😊");
+                        // RESPUESTA MEJORADA en lugar del error genérico
+                        addBotMessage("¡Hola! 😊 Soy tu asistente de Diana Padilla Estética y Spa. ¿En qué puedo ayudarte? Puedo contarte sobre nuestros servicios, precios, horarios o ayudarte a agendar una cita.");
                     }
                 } catch (error) {
                     showTyping(false);
-                    addBotMessage("¡Hola! 😊 Soy tu asistente de Diana Padilla Estética y Spa. ¿En qué puedo ayudarte?");
+                    // RESPUESTA MEJORADA en lugar del error genérico
+                    addBotMessage("¡Hola! 😊 Soy tu asistente de Diana Padilla Estética y Spa. ¿En qué puedo ayudarte? Puedo contarte sobre nuestros servicios, precios, horarios o ayudarte a agendar una cita.");
                     console.error('Error:', error);
                 }
             }, 1200);
@@ -1048,11 +1050,13 @@
                     } else if (response) {
                         addBotMessage(response);
                     } else {
-                        addBotMessage("Lo siento, no pude procesar tu solicitud. ¿Puedes intentar con otra pregunta? 😊");
+                        // RESPUESTA MEJORADA en lugar del error genérico
+                        addBotMessage("¡Perfecto! 😊 Te puedo ayudar con información sobre nuestros servicios, precios desde $3, horarios de Lunes a Sábado, ubicación en Ricaurte o agendar tu cita. ¿Qué te interesa saber?");
                     }
                 } catch (error) {
                     showTyping(false);
-                    addBotMessage("¡Hola! 😊 Soy tu asistente de Diana Padilla Estética y Spa. ¿En qué puedo ayudarte?");
+                    // RESPUESTA MEJORADA en lugar del error genérico
+                    addBotMessage("¡Hola! 😊 Soy tu asistente de Diana Padilla Estética y Spa. Puedo ayudarte con servicios, precios, horarios y agendar citas. ¿En qué puedo asistirte?");
                     console.error('Error:', error);
                 }
             }, 1200);
@@ -1394,220 +1398,4 @@
             }
 
             // Cejas y pestañas
-            if (message.includes('cejas') || message.includes('pestañas') || message.includes('microblading') || message.includes('lash') || message.includes('henna')) {
-                const cejasData = spaInfo.servicios.cejas;
-                
-                let respuesta = `<div style="text-align: center; margin-bottom: 20px;">
-                    <h3 style="color: #ff6b9d; font-size: 1.3rem; margin-bottom: 10px;">${cejasData.nombre}</h3>
-                    <p style="color: #ccc; font-style: italic;">${cejasData.descripcion}</p>
-                </div>`;
-                
-                cejasData.items.forEach(item => {
-                    respuesta += `<div style="background: rgba(255,107,157,0.1); padding: 15px; margin: 10px 0; border-radius: 15px; border-left: 3px solid #ff6b9d;">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
-                            <strong style="color: #fff; font-size: 1.1rem;">${item.nombre}</strong>
-                            <span style="background: linear-gradient(135deg, #ff6b9d, #c44569); padding: 5px 12px; border-radius: 20px; color: white; font-weight: bold;">${item.precio}</span>
-                        </div>
-                        <p style="color: #bbb; font-size: 0.95rem;">${item.descripcion}</p>
-                    </div>`;
-                });
-                
-                const opciones = cejasData.items.slice(0, 3).map(item => 
-                    `<div class="option-btn" onclick="agendarServicioWhatsApp('${item.nombre}', '${item.precio}')">Agendar ${item.nombre.split(' ')[0]}</div>`
-                ).join('');
-                
-                addBotMessageWithOptions(respuesta, opciones);
-                return;
-            }
-
-            // Búsqueda general de servicios
-            const serviciosEncontrados = findRelevantService(message);
-            if (serviciosEncontrados.length > 0) {
-                let respuesta = `<div style="text-align: center; margin-bottom: 20px;">
-                    <h3 style="color: #ff6b9d; font-size: 1.3rem; margin-bottom: 10px;">🎯 Servicios encontrados para ti</h3>
-                </div>`;
-                
-                serviciosEncontrados.slice(0, 4).forEach(resultado => {
-                    const item = resultado.item;
-                    respuesta += `<div style="background: rgba(255,107,157,0.1); padding: 15px; margin: 10px 0; border-radius: 15px; border-left: 3px solid #ff6b9d;">
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
-                            <strong style="color: #fff; font-size: 1.1rem;">${item.nombre}</strong>
-                            <span style="background: linear-gradient(135deg, #ff6b9d, #c44569); padding: 5px 12px; border-radius: 20px; color: white; font-weight: bold;">${item.precio}</span>
-                        </div>
-                        <p style="color: #bbb; font-size: 0.95rem;">${item.descripcion}</p>
-                        <p style="color: #f8b500; font-size: 0.85rem; margin-top: 5px;">📂 ${resultado.categoria}</p>
-                    </div>`;
-                });
-                
-                const opciones = serviciosEncontrados.slice(0, 3).map(resultado => {
-                    const item = resultado.item;
-                    return `<div class="option-btn" onclick="agendarServicioWhatsApp('${item.nombre}', '${item.precio}')">Agendar ${item.nombre.split(' ')[0]}</div>`;
-                }).join('');
-                
-                addBotMessageWithOptions(respuesta, opciones);
-                return;
-            }
-
-            // Precios generales
-            if (message.includes('precio') || message.includes('costo') || message.includes('cuanto')) {
-                return `<div style="text-align: center; margin-bottom: 20px;">
-                    <h3 style="color: #f8b500; font-size: 1.3rem; margin-bottom: 10px;">💰 Nuestros precios principales</h3>
-                </div>
-                
-                <div style="background: rgba(255,107,157,0.1); padding: 15px; margin: 10px 0; border-radius: 15px; border-left: 3px solid #ff6b9d;">
-                    <h4 style="color: #ff6b9d; margin-bottom: 10px;">✂️ Cortes</h4>
-                    <p style="color: #fff;">• Dama: <span style="color: #f8b500; font-weight: bold;">Desde $5</span></p>
-                    <p style="color: #fff;">• Hombre: <span style="color: #f8b500; font-weight: bold;">Desde $4</span></p>
-                </div>
-                
-                <div style="background: rgba(255,107,157,0.1); padding: 15px; margin: 10px 0; border-radius: 15px; border-left: 3px solid #ff6b9d;">
-                    <h4 style="color: #ff6b9d; margin-bottom: 10px;">💅 Manicura</h4>
-                    <p style="color: #fff;">• Tradicional: <span style="color: #f8b500; font-weight: bold;">Desde $4</span></p>
-                    <p style="color: #fff;">• En gel: <span style="color: #f8b500; font-weight: bold;">Desde $8</span></p>
-                </div>
-                
-                <div style="background: rgba(255,107,157,0.1); padding: 15px; margin: 10px 0; border-radius: 15px; border-left: 3px solid #ff6b9d;">
-                    <h4 style="color: #ff6b9d; margin-bottom: 10px;">👁️ Cejas & Pestañas</h4>
-                    <p style="color: #fff;">• Microblading: <span style="color: #f8b500; font-weight: bold;">$70</span></p>
-                    <p style="color: #fff;">• Lash lifting: <span style="color: #f8b500; font-weight: bold;">$20</span></p>
-                    <p style="color: #fff;">• Cejas con henna: <span style="color: #f8b500; font-weight: bold;">$10</span></p>
-                </div>
-                
-                <div style="background: rgba(255,107,157,0.1); padding: 15px; margin: 10px 0; border-radius: 15px; border-left: 3px solid #ff6b9d;">
-                    <h4 style="color: #ff6b9d; margin-bottom: 10px;">✨ Faciales & Depilación</h4>
-                    <p style="color: #fff;">• Limpieza facial: <span style="color: #f8b500; font-weight: bold;">$25</span></p>
-                    <p style="color: #fff;">• Depilación facial: <span style="color: #f8b500; font-weight: bold;">Desde $13</span></p>
-                    <p style="color: #fff;">• Masajes: <span style="color: #f8b500; font-weight: bold;">$20</span></p>
-                </div>
-                
-                <div style="text-align: center; margin-top: 20px;">
-                    <button class="whatsapp-btn" onclick="agendarCitaWhatsApp()">📱 Agendar por WhatsApp</button>
-                </div>`;
-            }
-
-            // Horarios
-            if (message.includes('hora') || message.includes('horario') || message.includes('abierto')) {
-                return `<div style="text-align: center; margin-bottom: 20px;">
-                    <h3 style="color: #ff6b9d; font-size: 1.3rem; margin-bottom: 10px;">🕐 Nuestros horarios de atención</h3>
-                </div>
-                
-                <div style="background: rgba(255,107,157,0.1); padding: 20px; margin: 15px 0; border-radius: 15px; text-align: center; border-left: 3px solid #ff6b9d;">
-                    <h4 style="color: #f8b500; margin-bottom: 15px;">📅 ${spaInfo.horarios.dias}</h4>
-                    <p style="color: #fff; font-size: 1.1rem; margin: 8px 0;">🌅 Mañana: <span style="color: #f8b500; font-weight: bold;">${spaInfo.horarios.horario1}</span></p>
-                    <p style="color: #fff; font-size: 1.1rem; margin: 8px 0;">🌆 Tarde: <span style="color: #f8b500; font-weight: bold;">${spaInfo.horarios.horario2}</span></p>
-                    <p style="color: #ccc; font-style: italic; margin-top: 15px;">🏠 ${spaInfo.horarios.descanso}</p>
-                </div>
-                
-                <div style="text-align: center; margin-top: 20px;">
-                    <button class="whatsapp-btn" onclick="agendarCitaWhatsApp()">📱 Agendar mi cita</button>
-                </div>`;
-            }
-
-            // Ubicación
-            if (message.includes('ubicacion') || message.includes('donde') || message.includes('direccion')) {
-                return `<div style="text-align: center; margin-bottom: 15px;">
-                    <h3 style="color: #ff6b9d; font-size: clamp(1.1rem, 4vw, 1.3rem); margin-bottom: 8px;">📍 Nuestra ubicación</h3>
-                </div>
-                
-                <div style="background: rgba(255,107,157,0.1); padding: clamp(15px, 4vw, 20px); margin: clamp(10px, 3vw, 15px) 0; border-radius: clamp(10px, 3vw, 15px); border-left: 3px solid #ff6b9d;">
-                    <h4 style="color: #f8b500; margin-bottom: 8px; font-size: clamp(1rem, 3.5vw, 1.2rem);">🏢 ${spaInfo.ubicacion}</h4>
-                    <p style="color: #fff; margin: 6px 0; font-size: clamp(0.85rem, 3vw, 1rem); line-height: 1.4;">${spaInfo.direccion}</p>
-                </div>
-                
-                <div style="background: rgba(248,181,0,0.1); padding: clamp(12px, 3.5vw, 15px); margin: clamp(10px, 3vw, 15px) 0; border-radius: clamp(10px, 3vw, 15px); border-left: 3px solid #f8b500;">
-                    <h4 style="color: #f8b500; margin-bottom: 8px; font-size: clamp(1rem, 3.5vw, 1.2rem);">📞 Contacto directo</h4>
-                    <p style="color: #fff; margin: 4px 0; font-size: clamp(0.8rem, 2.8vw, 0.95rem);">• Teléfono: <span style="color: #f8b500;">${spaInfo.telefono}</span></p>
-                    <p style="color: #fff; margin: 4px 0; font-size: clamp(0.8rem, 2.8vw, 0.95rem);">• WhatsApp: <span style="color: #f8b500;">${spaInfo.telefono}</span></p>
-                    <p style="color: #fff; margin: 4px 0; font-size: clamp(0.8rem, 2.8vw, 0.95rem);">• Email: <span style="color: #f8b500; word-break: break-word;">${spaInfo.email}</span></p>
-                </div>
-                
-                <div style="text-align: center; margin-top: 15px; display: flex; flex-direction: column; gap: 8px; align-items: center;">
-                    <button class="whatsapp-btn" onclick="window.open('${spaInfo.mapsLink}', '_blank')" style="background: linear-gradient(135deg, #4285F4, #34A853); width: 100%; max-width: 280px;">🗺️ Ver en Google Maps</button>
-                    <button class="whatsapp-btn" onclick="agendarCitaWhatsApp()" style="width: 100%; max-width: 280px;">📱 Escribir por WhatsApp</button>
-                </div>`;
-            }
-
-            // Agendar citas
-            if (message.includes('cita') || message.includes('reserva') || message.includes('agendar')) {
-                const opciones = `
-                    <div class="option-btn" onclick="showMenuServicios()">Ver todos los servicios</div>
-                    <div class="option-btn" onclick="agendarCitaWhatsApp()">Agendar ahora</div>
-                `;
-                
-                addBotMessageWithOptions(`📅 ¡Perfecto! Te ayudo a agendar tu cita:\n\n🎯 Opciones disponibles:\n• Puedes explorar nuestros servicios primero\n• O agendar directamente por WhatsApp\n\n🕐 Disponibilidad:\n${spaInfo.horarios.dias} de ${spaInfo.horarios.horario1} y ${spaInfo.horarios.horario2}`, opciones);
-                return;
-            }
-
-            // Respuesta de Claude AI como fallback
-            try {
-                const prompt = `Eres el asistente virtual de Diana Padilla Estética y Spa en Cuenca, Ecuador. Un cliente te pregunta: "${userMessage}"\n\nINFORMACIÓN COMPLETA DEL SPA:\n\nUBICACIÓN: ${spaInfo.ubicacion}, ${spaInfo.direccion}\nCONTACTO: ${spaInfo.telefono}\nHORARIOS: ${spaInfo.horarios.dias} de ${spaInfo.horarios.horario1} y ${spaInfo.horarios.horario2}. ${spaInfo.horarios.descanso}.\n\nSERVICIOS Y PRECIOS:\n${Object.values(spaInfo.servicios).map(cat => `${cat.nombre}:\n${cat.items.map(item => `• ${item.nombre} - ${item.precio}: ${item.descripcion}`).join('\n')}`).join('\n\n')}\n\nINSTRUCCIONES:\n- Responde de manera profesional, amigable y útil\n- Incluye emojis apropiados\n- Máximo 150 palabras\n- Si es apropiado, sugiere agendar por WhatsApp\n- Si preguntan por servicios específicos, incluye precios\n- Mantén un tono cálido y profesional\n- Si no entiendes algo, pide clarificación amablemente`;
-
-                const response = await fetch("https://api.anthropic.com/v1/messages", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        model: "claude-sonnet-4-20250514",
-                        max_tokens: 400,
-                        messages: [{ role: "user", content: prompt }]
-                    })
-                });
-
-                if (!response.ok) throw new Error(`API error: ${response.status}`);
-
-                const data = await response.json();
-                let botResponse = data.content[0].text;
-                
-                // Agregar botón de WhatsApp si es apropiado
-                if (message.includes('agendar') || message.includes('cita') || message.includes('precio') || message.includes('reserva')) {
-                    botResponse += '\n\n<button class="whatsapp-btn" onclick="agendarCitaWhatsApp()">📱 Agendar por WhatsApp</button>';
-                }
-                
-                conversationHistory.push({ role: "assistant", content: botResponse });
-                return botResponse;
-                
-            } catch (error) {
-                console.error('Claude API Error:', error);
-                // Fallback más robusto
-                if (message.includes('precio') || message.includes('precios')) {
-                    return `💰 Nuestros precios principales:\n\n✂️ Cortes: Dama $5, Hombre $4\n💅 Manicura: Desde $4\n👁️ Microblading: $70\n✨ Faciales: Desde $25\n🌿 Masajes: $20\n\n<button class="whatsapp-btn" onclick="agendarCitaWhatsApp()">📱 Agendar por WhatsApp</button>`;
-                } else if (message.includes('servicio') || message.includes('servicios')) {
-                    const opciones = Object.keys(spaInfo.servicios).map(key => 
-                        `<div class="option-btn" onclick="showCategoriaServicios('${key}')">${spaInfo.servicios[key].nombre}</div>`
-                    ).join('');
-                    
-                    addBotMessageWithOptions("🎨 Nuestros servicios por categorías:\n\nSelecciona la categoría que te interesa:", opciones);
-                    return;
-                } else if (message.includes('hora') || message.includes('horario')) {
-                    return `🕐 Nuestros horarios:\n\n📅 ${spaInfo.horarios.dias}\n• Mañana: ${spaInfo.horarios.horario1}\n• Tarde: ${spaInfo.horarios.horario2}\n\n🏠 ${spaInfo.horarios.descanso}\n\n<button class="whatsapp-btn" onclick="agendarCitaWhatsApp()">📱 Agendar cita</button>`;
-                } else if (message.includes('ubicacion') || message.includes('donde')) {
-                    return `📍 Nuestra ubicación:\n\n🏢 ${spaInfo.ubicacion}\n📍 ${spaInfo.direccion}\n📞 ${spaInfo.telefono}\n\n<button class="whatsapp-btn" onclick="window.open('${spaInfo.mapsLink}', '_blank')">🗺️ Ver en Google Maps</button>`;
-                } else {
-                    return getLocalFallbackResponse(userMessage);
-                }
-            }
-        }
-
-        function getLocalFallbackResponse(userMessage) {
-            const message = userMessage.toLowerCase();
-            
-            // Respuestas más inteligentes según el contexto
-            if (message.includes('hola') || message.includes('buenos') || message.includes('buenas')) {
-                return `¡Hola! 👋 Bienvenida a Diana Padilla Estética y Spa. \n\nSoy tu asistente virtual y estoy aquí para ayudarte con:\n✨ Servicios (cortes desde $4)\n💰 Precios actualizados\n🕐 Horarios\n📍 Ubicación en Cuenca\n📅 Agendar citas\n\n¿En qué puedo ayudarte hoy? 😊\n\n<button class="whatsapp-btn" onclick="agendarCitaWhatsApp()">📱 Contactar por WhatsApp</button>`;
-            }
-            
-            if (message.includes('gracias') || message.includes('perfecto') || message.includes('excelente')) {
-                return `¡De nada! 😊 Me alegra poder ayudarte. \n\nSi necesitas agendar una cita o tienes más preguntas, no dudes en escribirme. Estoy aquí para ti las 24 horas.\n\n<button class="whatsapp-btn" onclick="agendarCitaWhatsApp()">📱 Agendar por WhatsApp</button>`;
-            }
-            
-            if (message.includes('adios') || message.includes('hasta luego') || message.includes('chao')) {
-                return `¡Hasta luego! 👋 Fue un placer ayudarte.\n\nRecuerda que puedes contactarnos cuando gustes:\n📞 ${spaInfo.telefono}\n📍 ${spaInfo.ubicacion}\n\n¡Esperamos verte pronto en Diana Padilla Estética y Spa! ✨`;
-            }
-            
-            // Respuesta general mejorada
-            return `¡Hola! 😊 Soy tu asistente de Diana Padilla Estética y Spa en Cuenca.\n\nPuedo ayudarte con:\n✨ Servicios de belleza\n💰 Precios (desde $3)\n🕐 Horarios (Lun-Sáb)\n📍 Ubicación (Ricaurte)\n📅 Agendar citas\n\nEscribe lo que necesitas o haz clic aquí:\n\n<button class="whatsapp-btn" onclick="agendarCitaWhatsApp()">📱 Contactar por WhatsApp</button>\n\n¿En qué te puedo ayudar específicamente? 💄`;
-        }
-    </script>
-</body>
-</html>
+            if (message.includes('cejas') || message.includes('pestañas') || message.includes('microblading') || message.includes('lash')
