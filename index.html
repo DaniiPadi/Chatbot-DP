@@ -1252,7 +1252,7 @@
                     `<div class="option-btn" onclick="showCategoriaServicios('${key}')">${spaInfo.servicios[key].nombre}</div>`
                 ).join('');
                 
-                addBotMessageWithOptions("🎨 **Nuestros servicios por categorías:**\n\nSelecciona la categoría que te interesa:", opciones);
+                addBotMessageWithOptions("🎨 Nuestros servicios por categorías:\n\nSelecciona la categoría que te interesa:", opciones);
                 return;
             }
 
@@ -1262,7 +1262,7 @@
                     `<div class="option-btn" onclick="showPreciosCategoria('${key}')">${spaInfo.servicios[key].nombre}</div>`
                 ).join('');
                 
-                addBotMessageWithOptions("💰 **Ver precios por categoría:**\n\nElige la categoría para ver precios detallados:", opciones);
+                addBotMessageWithOptions("💰 Ver precios por categoría:\n\nElige la categoría para ver precios detallados:", opciones);
                 return;
             }
             
@@ -1534,7 +1534,7 @@
                     <div class="option-btn" onclick="agendarCitaWhatsApp()">Agendar ahora</div>
                 `;
                 
-                addBotMessageWithOptions(`📅 **¡Perfecto! Te ayudo a agendar tu cita:**\n\n🎯 **Opciones disponibles:**\n• Puedes explorar nuestros servicios primero\n• O agendar directamente por WhatsApp\n\n🕐 **Disponibilidad:**\n${spaInfo.horarios.dias} de ${spaInfo.horarios.horario1} y ${spaInfo.horarios.horario2}`, opciones);
+                addBotMessageWithOptions(`📅 ¡Perfecto! Te ayudo a agendar tu cita:\n\n🎯 Opciones disponibles:\n• Puedes explorar nuestros servicios primero\n• O agendar directamente por WhatsApp\n\n🕐 Disponibilidad:\n${spaInfo.horarios.dias} de ${spaInfo.horarios.horario1} y ${spaInfo.horarios.horario2}`, opciones);
                 return;
             }
 
@@ -1571,14 +1571,18 @@
                 console.error('Claude API Error:', error);
                 // Fallback más robusto
                 if (message.includes('precio') || message.includes('precios')) {
-                    return `💰 **Nuestros precios principales:**\n\n✂️ **Cortes:** Dama $5, Hombre $4\n💅 **Manicura:** Desde $4\n👁️ **Microblading:** $70\n✨ **Faciales:** Desde $25\n🌿 **Masajes:** $20\n\n<button class="whatsapp-btn" onclick="agendarCitaWhatsApp()">📱 Agendar por WhatsApp</button>`;
+                    return `💰 Nuestros precios principales:\n\n✂️ Cortes: Dama $5, Hombre $4\n💅 Manicura: Desde $4\n👁️ Microblading: $70\n✨ Faciales: Desde $25\n🌿 Masajes: $20\n\n<button class="whatsapp-btn" onclick="agendarCitaWhatsApp()">📱 Agendar por WhatsApp</button>`;
                 } else if (message.includes('servicio') || message.includes('servicios')) {
                     const opciones = Object.keys(spaInfo.servicios).map(key => 
                         `<div class="option-btn" onclick="showCategoriaServicios('${key}')">${spaInfo.servicios[key].nombre}</div>`
                     ).join('');
                     
-                    addBotMessageWithOptions("🎨 **Nuestros servicios por categorías:**\n\nSelecciona la categoría que te interesa:", opciones);
+                    addBotMessageWithOptions("🎨 Nuestros servicios por categorías:\n\nSelecciona la categoría que te interesa:", opciones);
                     return;
+                } else if (message.includes('hora') || message.includes('horario')) {
+                    return `🕐 Nuestros horarios:\n\n📅 ${spaInfo.horarios.dias}\n• Mañana: ${spaInfo.horarios.horario1}\n• Tarde: ${spaInfo.horarios.horario2}\n\n🏠 ${spaInfo.horarios.descanso}\n\n<button class="whatsapp-btn" onclick="agendarCitaWhatsApp()">📱 Agendar cita</button>`;
+                } else if (message.includes('ubicacion') || message.includes('donde')) {
+                    return `📍 Nuestra ubicación:\n\n🏢 ${spaInfo.ubicacion}\n📍 ${spaInfo.direccion}\n📞 ${spaInfo.telefono}\n\n<button class="whatsapp-btn" onclick="window.open('${spaInfo.mapsLink}', '_blank')">🗺️ Ver en Google Maps</button>`;
                 } else {
                     return getLocalFallbackResponse(userMessage);
                 }
