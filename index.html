@@ -765,7 +765,7 @@
     <div class="chat-container">
         <div class="chat-messages" id="chatMessages">
             <div class="welcome-message">
-                <h2>¡Bienvenida a Diana Padilla Estética & Spa! ✨</h2>
+                <h2>¡Bienvenida a Diana Padilla Spa! ✨</h2>
                 <p>Soy tu asistente virtual inteligente. Puedo ayudarte con servicios, precios, horarios, ubicación y agendar tu cita perfecta.</p>
                 <div class="quick-actions">
                     <div class="quick-action" onclick="sendQuickMessage('servicios')">🎨 Ver Servicios</div>
@@ -1387,6 +1387,9 @@
                     <button class="whatsapp-btn" onclick="agendarServicioWhatsApp('${masajeItem.nombre}', '${masajeItem.precio}')">📱 Agendar Masaje</button>
                 </div>`;
             }
+
+            // Cejas y pestañas
+            if (message.includes('cejas') || message.includes('pestañas') || message.includes('microblading') || message.includes('lash') || message.includes('henna')) {
                 const cejasData = spaInfo.servicios.cejas;
                 
                 let respuesta = `<div style="text-align: center; margin-bottom: 20px;">
