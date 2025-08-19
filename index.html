@@ -382,16 +382,27 @@
 
         /* Mobile Responsive */
         @media (max-width: 768px) {
+            .header {
+                padding: 1rem 0;
+            }
+
             .header h1 {
-                font-size: 1.5rem;
+                font-size: 1.3rem;
+                line-height: 1.3;
             }
 
             .header p {
-                font-size: 0.9rem;
+                font-size: 0.85rem;
+                padding: 0 1rem;
+            }
+
+            .chat-container {
+                height: calc(100vh - 100px);
             }
 
             .chat-messages {
                 padding: 1rem;
+                gap: 1rem;
             }
 
             .chat-input {
@@ -402,17 +413,327 @@
                 max-width: 95%;
             }
 
+            .message-avatar {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+
             .message-content {
                 padding: 0.8rem 1rem;
                 font-size: 0.9rem;
+                border-radius: 15px;
             }
 
             .quick-actions {
                 flex-direction: column;
+                gap: 0.5rem;
             }
 
             .quick-action {
                 text-align: center;
+                padding: 0.8rem 1rem;
+                font-size: 0.85rem;
+            }
+
+            .welcome-message {
+                padding: 1.5rem;
+                margin: 0.5rem;
+            }
+
+            .welcome-message h2 {
+                font-size: 1.2rem;
+            }
+
+            .welcome-message p {
+                font-size: 0.9rem;
+            }
+
+            /* Responsive Interactive Options */
+            .interactive-options {
+                flex-direction: column;
+                gap: 0.5rem;
+                margin-top: 1rem;
+            }
+
+            .option-btn {
+                text-align: center;
+                padding: 0.8rem 1rem;
+                font-size: 0.85rem;
+                border-radius: 15px;
+                width: 100%;
+            }
+
+            .whatsapp-btn {
+                padding: 0.8rem 1.2rem;
+                font-size: 0.85rem;
+                border-radius: 20px;
+                margin: 0.3rem 0;
+                width: 100%;
+                max-width: 280px;
+            }
+
+            /* Mobile Input Adjustments */
+            .input-container {
+                flex-direction: row;
+                gap: 0.8rem;
+            }
+
+            .message-input {
+                padding: 0.8rem 1rem;
+                font-size: 0.9rem;
+                border-radius: 20px;
+            }
+
+            .send-button {
+                width: 45px;
+                height: 45px;
+                font-size: 1.1rem;
+            }
+
+            /* Mobile Typography */
+            .message-content h3 {
+                font-size: 1.1rem !important;
+            }
+
+            .message-content h4 {
+                font-size: 1rem !important;
+            }
+
+            .message-content p {
+                font-size: 0.85rem !important;
+            }
+
+            /* Mobile Cards */
+            .message-content div[style*="background"] {
+                padding: 12px !important;
+                margin: 8px 0 !important;
+                border-radius: 12px !important;
+            }
+
+            /* Mobile Price Tags */
+            .message-content span[style*="background: linear-gradient"] {
+                padding: 4px 8px !important;
+                font-size: 0.8rem !important;
+                border-radius: 15px !important;
+            }
+        }
+
+        /* Tablet Responsive */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .header h1 {
+                font-size: 1.7rem;
+            }
+
+            .chat-messages {
+                padding: 1.5rem;
+            }
+
+            .message {
+                max-width: 85%;
+            }
+
+            .message-content {
+                padding: 1rem 1.2rem;
+                font-size: 0.95rem;
+            }
+
+            .quick-actions {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .quick-action {
+                min-width: 150px;
+                text-align: center;
+            }
+
+            .interactive-options {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .option-btn {
+                min-width: 140px;
+                text-align: center;
+            }
+
+            .whatsapp-btn {
+                max-width: 250px;
+                margin: 0.3rem;
+            }
+        }
+
+        /* Large Desktop */
+        @media (min-width: 1025px) and (max-width: 1440px) {
+            .chat-container {
+                max-width: 1000px;
+            }
+
+            .message {
+                max-width: 75%;
+            }
+
+            .interactive-options {
+                max-width: 600px;
+            }
+
+            .whatsapp-btn {
+                max-width: 220px;
+            }
+        }
+
+        /* Ultra Wide Screens */
+        @media (min-width: 1441px) {
+            .chat-container {
+                max-width: 1200px;
+            }
+
+            .header h1 {
+                font-size: 2.2rem;
+            }
+
+            .message {
+                max-width: 70%;
+            }
+
+            .message-content {
+                font-size: 1rem;
+                padding: 1.2rem 1.8rem;
+            }
+        }
+
+        /* iPhone SE and small screens */
+        @media (max-width: 375px) {
+            .header {
+                padding: 0.8rem 0;
+            }
+
+            .header h1 {
+                font-size: 1.1rem;
+                padding: 0 0.5rem;
+            }
+
+            .header p {
+                font-size: 0.8rem;
+                padding: 0 0.5rem;
+            }
+
+            .chat-messages {
+                padding: 0.8rem;
+                gap: 0.8rem;
+            }
+
+            .chat-input {
+                padding: 0.8rem;
+            }
+
+            .message-content {
+                padding: 0.7rem 0.8rem;
+                font-size: 0.85rem;
+            }
+
+            .welcome-message {
+                padding: 1rem;
+                margin: 0.3rem;
+            }
+
+            .welcome-message h2 {
+                font-size: 1.1rem;
+            }
+
+            .option-btn, .whatsapp-btn {
+                padding: 0.7rem 0.8rem;
+                font-size: 0.8rem;
+            }
+
+            .input-container {
+                gap: 0.5rem;
+            }
+
+            .message-input {
+                padding: 0.7rem 0.8rem;
+                font-size: 0.85rem;
+            }
+
+            .send-button {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+        }
+
+        /* Landscape orientation for mobile */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .header {
+                padding: 0.5rem 0;
+                position: relative;
+            }
+
+            .header h1 {
+                font-size: 1.2rem;
+            }
+
+            .header p {
+                font-size: 0.8rem;
+            }
+
+            .chat-container {
+                height: calc(100vh - 80px);
+            }
+
+            .chat-messages {
+                padding: 0.8rem;
+            }
+
+            .welcome-message {
+                padding: 1rem;
+            }
+
+            .quick-actions {
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 0.4rem;
+            }
+
+            .quick-action {
+                flex: 1;
+                min-width: 120px;
+                padding: 0.6rem 0.8rem;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Improved touch targets for mobile */
+        @media (hover: none) and (pointer: coarse) {
+            .option-btn, .whatsapp-btn, .quick-action {
+                min-height: 44px;
+                touch-action: manipulation;
+            }
+
+            .send-button {
+                min-width: 44px;
+                min-height: 44px;
+            }
+
+            .message-input {
+                min-height: 44px;
+            }
+        }
+
+        /* Dark mode support */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --shadow: 0 10px 30px rgba(0,0,0,0.5);
+            }
+        }
+
+        /* Reduce motion for accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
             }
         }
 
@@ -488,7 +809,9 @@
         const spaInfo = {
             nombre: "Diana Padilla Estética & Spa",
             descripcion: "Spa de lujo especializado en belleza y bienestar, donde cada tratamiento es una experiencia única.",
-            ubicacion: "Guayaquil, Ecuador",
+            ubicacion: "Cuenca, Ecuador - Parroquia Ricaurte",
+            direccion: "Calles Julia Bernal y 18 de Noviembre, a 30 metros del Comercial Barbecho",
+            mapsLink: "https://maps.google.com/?q=Julia+Bernal+y+18+de+Noviembre,+Ricaurte,+Cuenca,+Ecuador",
             telefono: "+593 98 799 3614",
             whatsapp: "593987993614",
             email: "info@dianapaspa.com",
@@ -608,26 +931,45 @@
 
         function showCategoriaServicios(categoria) {
             const cat = spaInfo.servicios[categoria];
-            let mensaje = `${cat.nombre}\n\n${cat.descripcion}\n\n`;
+            
+            let mensaje = `<div style="text-align: center; margin-bottom: 15px;">
+                <h3 style="color: #ff6b9d; font-size: clamp(1.1rem, 4vw, 1.3rem); margin-bottom: 8px;">${cat.nombre}</h3>
+                <p style="color: #ccc; font-style: italic; font-size: clamp(0.85rem, 3vw, 0.95rem);">${cat.descripcion}</p>
+            </div>`;
             
             cat.items.forEach(item => {
-                mensaje += `• **${item.nombre}** - ${item.precio}\n  ${item.descripcion}\n\n`;
+                mensaje += `<div style="background: rgba(255,107,157,0.1); padding: clamp(10px, 3vw, 15px); margin: clamp(8px, 2vw, 10px) 0; border-radius: clamp(10px, 3vw, 15px); border-left: 3px solid #ff6b9d;">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 5px; gap: 10px;">
+                        <strong style="color: #fff; font-size: clamp(0.95rem, 3.5vw, 1.1rem); flex: 1;">${item.nombre}</strong>
+                        <span style="background: linear-gradient(135deg, #ff6b9d, #c44569); padding: clamp(4px, 1.5vw, 5px) clamp(8px, 2.5vw, 12px); border-radius: clamp(15px, 4vw, 20px); color: white; font-weight: bold; font-size: clamp(0.75rem, 2.5vw, 0.9rem); white-space: nowrap;">${item.precio}</span>
+                    </div>
+                    <p style="color: #bbb; font-size: clamp(0.8rem, 2.8vw, 0.95rem); margin: 5px 0; line-height: 1.4;">${item.descripcion}</p>
+                </div>`;
             });
 
-            const whatsappBtn = `<button class="whatsapp-btn" onclick="agendarCitaWhatsApp()">📱 Agendar por WhatsApp</button>`;
+            const whatsappBtn = `<div style="text-align: center; margin-top: 15px;">
+                <button class="whatsapp-btn" onclick="agendarCitaWhatsApp()" style="width: 100%; max-width: 280px;">📱 Agendar por WhatsApp</button>
+            </div>`;
+            
             addBotMessage(mensaje + whatsappBtn);
         }
 
         function showPreciosCategoria(categoria) {
             const cat = spaInfo.servicios[categoria];
-            let mensaje = `💰 **${cat.nombre} - Precios**\n\n`;
+            
+            let mensaje = `<div style="text-align: center; margin-bottom: 15px;">
+                <h3 style="color: #f8b500; font-size: clamp(1.1rem, 4vw, 1.3rem); margin-bottom: 8px;">💰 ${cat.nombre} - Precios</h3>
+            </div>`;
             
             cat.items.forEach(item => {
-                mensaje += `• ${item.nombre}: **${item.precio}**\n`;
+                mensaje += `<div style="display: flex; justify-content: space-between; align-items: center; padding: clamp(10px, 3vw, 12px); margin: clamp(6px, 2vw, 8px) 0; background: rgba(248,181,0,0.1); border-radius: clamp(8px, 2.5vw, 10px); border-left: 3px solid #f8b500; gap: 10px;">
+                    <span style="color: #fff; font-size: clamp(0.85rem, 3vw, 1rem); flex: 1;">${item.nombre}</span>
+                    <span style="color: #f8b500; font-weight: bold; font-size: clamp(0.9rem, 3.5vw, 1.1rem); white-space: nowrap;">${item.precio}</span>
+                </div>`;
             });
 
-            const opciones = cat.items.map(item => 
-                `<div class="option-btn" onclick="agendarServicioWhatsApp('${item.nombre}', '${item.precio}')">Agendar ${item.nombre}</div>`
+            const opciones = cat.items.slice(0, 3).map(item => 
+                `<div class="option-btn" onclick="agendarServicioWhatsApp('${item.nombre}', '${item.precio}')" style="margin: 5px 0;">Agendar ${item.nombre.split(' ')[0]}</div>`
             ).join('');
 
             addBotMessageWithOptions(mensaje, opciones);
@@ -847,9 +1189,18 @@
                     item.nombre.toLowerCase().includes('corte')
                 );
                 
-                let respuesta = "✂️ **Nuestros servicios de cortes:**\n\n";
+                let respuesta = `<div style="text-align: center; margin-bottom: 20px;">
+                    <h3 style="color: #ff6b9d; font-size: 1.3rem; margin-bottom: 10px;">✂️ Nuestros servicios de cortes</h3>
+                </div>`;
+                
                 cortesData.forEach(corte => {
-                    respuesta += `• **${corte.nombre}** - ${corte.precio}\n  ${corte.descripcion}\n\n`;
+                    respuesta += `<div style="background: rgba(255,107,157,0.1); padding: 15px; margin: 10px 0; border-radius: 15px; border-left: 3px solid #ff6b9d;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+                            <strong style="color: #fff; font-size: 1.1rem;">${corte.nombre}</strong>
+                            <span style="background: linear-gradient(135deg, #ff6b9d, #c44569); padding: 5px 12px; border-radius: 20px; color: white; font-weight: bold;">${corte.precio}</span>
+                        </div>
+                        <p style="color: #bbb; font-size: 0.95rem;">${corte.descripcion}</p>
+                    </div>`;
                 });
                 
                 const opciones = cortesData.map(corte => 
@@ -864,13 +1215,23 @@
             if (message.includes('manicura') || message.includes('uñas') || message.includes('nail')) {
                 const manicuraData = spaInfo.servicios.unas;
                 
-                let respuesta = `${manicuraData.nombre}\n\n${manicuraData.descripcion}\n\n`;
+                let respuesta = `<div style="text-align: center; margin-bottom: 20px;">
+                    <h3 style="color: #ff6b9d; font-size: 1.3rem; margin-bottom: 10px;">${manicuraData.nombre}</h3>
+                    <p style="color: #ccc; font-style: italic;">${manicuraData.descripcion}</p>
+                </div>`;
+                
                 manicuraData.items.forEach(item => {
-                    respuesta += `• **${item.nombre}** - ${item.precio}\n  ${item.descripcion}\n\n`;
+                    respuesta += `<div style="background: rgba(255,107,157,0.1); padding: 15px; margin: 10px 0; border-radius: 15px; border-left: 3px solid #ff6b9d;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+                            <strong style="color: #fff; font-size: 1.1rem;">${item.nombre}</strong>
+                            <span style="background: linear-gradient(135deg, #ff6b9d, #c44569); padding: 5px 12px; border-radius: 20px; color: white; font-weight: bold;">${item.precio}</span>
+                        </div>
+                        <p style="color: #bbb; font-size: 0.95rem;">${item.descripcion}</p>
+                    </div>`;
                 });
                 
-                const opciones = manicuraData.items.map(item => 
-                    `<div class="option-btn" onclick="agendarServicioWhatsApp('${item.nombre}', '${item.precio}')">Agendar ${item.nombre}</div>`
+                const opciones = manicuraData.items.slice(0, 3).map(item => 
+                    `<div class="option-btn" onclick="agendarServicioWhatsApp('${item.nombre}', '${item.precio}')">Agendar ${item.nombre.split(' ')[0]}</div>`
                 ).join('');
                 
                 addBotMessageWithOptions(respuesta, opciones);
@@ -881,13 +1242,23 @@
             if (message.includes('cejas') || message.includes('pestañas') || message.includes('microblading')) {
                 const cejasData = spaInfo.servicios.cejas;
                 
-                let respuesta = `${cejasData.nombre}\n\n${cejasData.descripcion}\n\n`;
+                let respuesta = `<div style="text-align: center; margin-bottom: 20px;">
+                    <h3 style="color: #ff6b9d; font-size: 1.3rem; margin-bottom: 10px;">${cejasData.nombre}</h3>
+                    <p style="color: #ccc; font-style: italic;">${cejasData.descripcion}</p>
+                </div>`;
+                
                 cejasData.items.forEach(item => {
-                    respuesta += `• **${item.nombre}** - ${item.precio}\n  ${item.descripcion}\n\n`;
+                    respuesta += `<div style="background: rgba(255,107,157,0.1); padding: 15px; margin: 10px 0; border-radius: 15px; border-left: 3px solid #ff6b9d;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+                            <strong style="color: #fff; font-size: 1.1rem;">${item.nombre}</strong>
+                            <span style="background: linear-gradient(135deg, #ff6b9d, #c44569); padding: 5px 12px; border-radius: 20px; color: white; font-weight: bold;">${item.precio}</span>
+                        </div>
+                        <p style="color: #bbb; font-size: 0.95rem;">${item.descripcion}</p>
+                    </div>`;
                 });
                 
-                const opciones = cejasData.items.map(item => 
-                    `<div class="option-btn" onclick="agendarServicioWhatsApp('${item.nombre}', '${item.precio}')">Agendar ${item.nombre}</div>`
+                const opciones = cejasData.items.slice(0, 3).map(item => 
+                    `<div class="option-btn" onclick="agendarServicioWhatsApp('${item.nombre}', '${item.precio}')">Agendar ${item.nombre.split(' ')[0]}</div>`
                 ).join('');
                 
                 addBotMessageWithOptions(respuesta, opciones);
@@ -897,16 +1268,25 @@
             // Búsqueda general de servicios
             const serviciosEncontrados = findRelevantService(message);
             if (serviciosEncontrados.length > 0) {
-                let respuesta = "🎯 **Encontré estos servicios para ti:**\n\n";
+                let respuesta = `<div style="text-align: center; margin-bottom: 20px;">
+                    <h3 style="color: #ff6b9d; font-size: 1.3rem; margin-bottom: 10px;">🎯 Servicios encontrados para ti</h3>
+                </div>`;
                 
-                serviciosEncontrados.slice(0, 5).forEach(resultado => {
+                serviciosEncontrados.slice(0, 4).forEach(resultado => {
                     const item = resultado.item;
-                    respuesta += `• **${item.nombre}** - ${item.precio}\n  ${item.descripcion}\n  Categoría: ${resultado.categoria}\n\n`;
+                    respuesta += `<div style="background: rgba(255,107,157,0.1); padding: 15px; margin: 10px 0; border-radius: 15px; border-left: 3px solid #ff6b9d;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+                            <strong style="color: #fff; font-size: 1.1rem;">${item.nombre}</strong>
+                            <span style="background: linear-gradient(135deg, #ff6b9d, #c44569); padding: 5px 12px; border-radius: 20px; color: white; font-weight: bold;">${item.precio}</span>
+                        </div>
+                        <p style="color: #bbb; font-size: 0.95rem;">${item.descripcion}</p>
+                        <p style="color: #f8b500; font-size: 0.85rem; margin-top: 5px;">📂 ${resultado.categoria}</p>
+                    </div>`;
                 });
                 
                 const opciones = serviciosEncontrados.slice(0, 3).map(resultado => {
                     const item = resultado.item;
-                    return `<div class="option-btn" onclick="agendarServicioWhatsApp('${item.nombre}', '${item.precio}')">Agendar ${item.nombre}</div>`;
+                    return `<div class="option-btn" onclick="agendarServicioWhatsApp('${item.nombre}', '${item.precio}')">Agendar ${item.nombre.split(' ')[0]}</div>`;
                 }).join('');
                 
                 addBotMessageWithOptions(respuesta, opciones);
@@ -915,17 +1295,73 @@
 
             // Precios generales
             if (message.includes('precio') || message.includes('costo') || message.includes('cuanto')) {
-                return `💰 **Algunos de nuestros precios principales:**\n\n✂️ **Cortes:**\n• Dama: Desde $15\n• Hombre: Desde $12\n\n💅 **Manicura:**\n• Tradicional: $12\n• En gel: $18\n\n👁️ **Cejas & Pestañas:**\n• Microblading: $120\n• Lash lifting: $35\n\n✨ **Faciales:**\n• Limpieza profunda: $35\n• Makeup: Desde $25\n\n🌿 **Relajación:**\n• Masajes: $45\n\n<button class="whatsapp-btn" onclick="agendarCitaWhatsApp()">📱 Agendar por WhatsApp</button>\n\n¿Te interesa algún servicio en particular?`;
+                return `<div style="text-align: center; margin-bottom: 20px;">
+                    <h3 style="color: #f8b500; font-size: 1.3rem; margin-bottom: 10px;">💰 Nuestros precios principales</h3>
+                </div>
+                
+                <div style="background: rgba(255,107,157,0.1); padding: 15px; margin: 10px 0; border-radius: 15px; border-left: 3px solid #ff6b9d;">
+                    <h4 style="color: #ff6b9d; margin-bottom: 10px;">✂️ Cortes</h4>
+                    <p style="color: #fff;">• Dama: <span style="color: #f8b500; font-weight: bold;">Desde $15</span></p>
+                    <p style="color: #fff;">• Hombre: <span style="color: #f8b500; font-weight: bold;">Desde $12</span></p>
+                </div>
+                
+                <div style="background: rgba(255,107,157,0.1); padding: 15px; margin: 10px 0; border-radius: 15px; border-left: 3px solid #ff6b9d;">
+                    <h4 style="color: #ff6b9d; margin-bottom: 10px;">💅 Manicura</h4>
+                    <p style="color: #fff;">• Tradicional: <span style="color: #f8b500; font-weight: bold;">$12</span></p>
+                    <p style="color: #fff;">• En gel: <span style="color: #f8b500; font-weight: bold;">$18</span></p>
+                </div>
+                
+                <div style="background: rgba(255,107,157,0.1); padding: 15px; margin: 10px 0; border-radius: 15px; border-left: 3px solid #ff6b9d;">
+                    <h4 style="color: #ff6b9d; margin-bottom: 10px;">👁️ Cejas & Pestañas</h4>
+                    <p style="color: #fff;">• Microblading: <span style="color: #f8b500; font-weight: bold;">$120</span></p>
+                    <p style="color: #fff;">• Lash lifting: <span style="color: #f8b500; font-weight: bold;">$35</span></p>
+                </div>
+                
+                <div style="text-align: center; margin-top: 20px;">
+                    <button class="whatsapp-btn" onclick="agendarCitaWhatsApp()">📱 Agendar por WhatsApp</button>
+                </div>`;
             }
 
             // Horarios
             if (message.includes('hora') || message.includes('horario') || message.includes('abierto')) {
-                return `🕐 **Nuestros horarios de atención:**\n\n📅 **${spaInfo.horarios.dias}:**\n• Mañana: ${spaInfo.horarios.horario1}\n• Tarde: ${spaInfo.horarios.horario2}\n\n🏠 **${spaInfo.horarios.descanso}**\n\n<button class="whatsapp-btn" onclick="agendarCitaWhatsApp()">📱 Agendar mi cita</button>\n\n¿Te gustaría reservar algún horario específico?`;
+                return `<div style="text-align: center; margin-bottom: 20px;">
+                    <h3 style="color: #ff6b9d; font-size: 1.3rem; margin-bottom: 10px;">🕐 Nuestros horarios de atención</h3>
+                </div>
+                
+                <div style="background: rgba(255,107,157,0.1); padding: 20px; margin: 15px 0; border-radius: 15px; text-align: center; border-left: 3px solid #ff6b9d;">
+                    <h4 style="color: #f8b500; margin-bottom: 15px;">📅 ${spaInfo.horarios.dias}</h4>
+                    <p style="color: #fff; font-size: 1.1rem; margin: 8px 0;">🌅 Mañana: <span style="color: #f8b500; font-weight: bold;">${spaInfo.horarios.horario1}</span></p>
+                    <p style="color: #fff; font-size: 1.1rem; margin: 8px 0;">🌆 Tarde: <span style="color: #f8b500; font-weight: bold;">${spaInfo.horarios.horario2}</span></p>
+                    <p style="color: #ccc; font-style: italic; margin-top: 15px;">🏠 ${spaInfo.horarios.descanso}</p>
+                </div>
+                
+                <div style="text-align: center; margin-top: 20px;">
+                    <button class="whatsapp-btn" onclick="agendarCitaWhatsApp()">📱 Agendar mi cita</button>
+                </div>`;
             }
 
             // Ubicación
             if (message.includes('ubicacion') || message.includes('donde') || message.includes('direccion')) {
-                return `📍 **Nuestra ubicación:**\n${spaInfo.ubicacion}\n\n📞 **Contacto directo:**\n• Teléfono: ${spaInfo.telefono}\n• WhatsApp: ${spaInfo.telefono}\n• Email: ${spaInfo.email}\n\n<button class="whatsapp-btn" onclick="agendarCitaWhatsApp()">📱 Escribir por WhatsApp</button>\n\n¿Necesitas indicaciones específicas para llegar?`;
+                return `<div style="text-align: center; margin-bottom: 15px;">
+                    <h3 style="color: #ff6b9d; font-size: clamp(1.1rem, 4vw, 1.3rem); margin-bottom: 8px;">📍 Nuestra ubicación</h3>
+                </div>
+                
+                <div style="background: rgba(255,107,157,0.1); padding: clamp(15px, 4vw, 20px); margin: clamp(10px, 3vw, 15px) 0; border-radius: clamp(10px, 3vw, 15px); border-left: 3px solid #ff6b9d;">
+                    <h4 style="color: #f8b500; margin-bottom: 8px; font-size: clamp(1rem, 3.5vw, 1.2rem);">🏢 ${spaInfo.ubicacion}</h4>
+                    <p style="color: #fff; margin: 6px 0; font-size: clamp(0.85rem, 3vw, 1rem); line-height: 1.4;">${spaInfo.direccion}</p>
+                </div>
+                
+                <div style="background: rgba(248,181,0,0.1); padding: clamp(12px, 3.5vw, 15px); margin: clamp(10px, 3vw, 15px) 0; border-radius: clamp(10px, 3vw, 15px); border-left: 3px solid #f8b500;">
+                    <h4 style="color: #f8b500; margin-bottom: 8px; font-size: clamp(1rem, 3.5vw, 1.2rem);">📞 Contacto directo</h4>
+                    <p style="color: #fff; margin: 4px 0; font-size: clamp(0.8rem, 2.8vw, 0.95rem);">• Teléfono: <span style="color: #f8b500;">${spaInfo.telefono}</span></p>
+                    <p style="color: #fff; margin: 4px 0; font-size: clamp(0.8rem, 2.8vw, 0.95rem);">• WhatsApp: <span style="color: #f8b500;">${spaInfo.telefono}</span></p>
+                    <p style="color: #fff; margin: 4px 0; font-size: clamp(0.8rem, 2.8vw, 0.95rem);">• Email: <span style="color: #f8b500; word-break: break-word;">${spaInfo.email}</span></p>
+                </div>
+                
+                <div style="text-align: center; margin-top: 15px; display: flex; flex-direction: column; gap: 8px; align-items: center;">
+                    <button class="whatsapp-btn" onclick="window.open('${spaInfo.mapsLink}', '_blank')" style="background: linear-gradient(135deg, #4285F4, #34A853); width: 100%; max-width: 280px;">🗺️ Ver en Google Maps</button>
+                    <button class="whatsapp-btn" onclick="agendarCitaWhatsApp()" style="width: 100%; max-width: 280px;">📱 Escribir por WhatsApp</button>
+                </div>`;
             }
 
             // Agendar citas
