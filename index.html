@@ -768,15 +768,15 @@
                 <h2>¡Bienvenida a Diana Padilla Spa! ✨</h2>
                 <p>Soy tu asistente virtual inteligente. Puedo ayudarte con servicios, precios, horarios, ubicación y agendar tu cita perfecta.</p>
                 <div class="quick-actions">
-                    <div class="quick-action" onclick="showMenuServicios()">🎨 Ver Servicios</div>
-                    <div class="quick-action" onclick="showMenuPrecios()">💰 Ver Precios</div>
+                    <div class="quick-action" onclick="sendQuickMessage('servicios')">🎨 Ver Servicios</div>
+                    <div class="quick-action" onclick="sendQuickMessage('precios')">💰 Ver Precios</div>
                     <div class="quick-action" onclick="sendQuickMessage('horarios')">🕐 Horarios</div>
                     <div class="quick-action" onclick="sendQuickMessage('ubicacion')">📍 Ubicación</div>
                     <div class="quick-action" onclick="agendarCitaWhatsApp()">📅 Agendar Cita</div>
                 </div>
             </div>
 
-            <div class="typing-indicator" id="typingIndicator">
+            <div class="typing-indicator" id="typingIndicator" style="display: none;">
                 <div class="message-avatar">
                     💄
                 </div>
@@ -828,58 +828,59 @@
                     nombre: "💇‍♀️ Arte Capilar",
                     descripcion: "Servicios profesionales para tu cabello",
                     items: [
-                        { nombre: "Cortes de dama", precio: "Desde $15", descripcion: "Cortes modernos y clásicos para damas" },
-                        { nombre: "Cortes de hombre", precio: "Desde $12", descripcion: "Cortes masculinos profesionales" },
-                        { nombre: "Alisado con keratina", precio: "$80", descripcion: "Alisado profesional que dura meses" },
-                        { nombre: "Ondulaciones", precio: "$25", descripcion: "Ondas perfectas y naturales" },
+                        { nombre: "Cortes de dama", precio: "Desde $5", descripcion: "Cortes modernos y clásicos para damas" },
+                        { nombre: "Cortes de hombre", precio: "Desde $4", descripcion: "Cortes masculinos profesionales" },
+                        { nombre: "Alisado con keratina", precio: "Desde $45", descripcion: "Alisado profesional realizado con productos orgánicos que dura meses" },
+                        { nombre: "Ondulaciones", precio: "Desde $15", descripcion: "Ondas perfectas y naturales" },
                         { nombre: "Tintes y rayitos", precio: "Desde $30", descripcion: "Coloración completa, rayitos, marmoleados" },
-                        { nombre: "Balayage y californiana", precio: "$60", descripcion: "Técnicas de coloración premium" },
-                        { nombre: "Alta frecuencia capilar", precio: "$20", descripcion: "Tratamiento para fortalecer el cabello" },
-                        { nombre: "Repolarización capilar", precio: "$35", descripcion: "Reparación profunda del cabello dañado" },
-                        { nombre: "Extensiones cosidas", precio: "$100", descripcion: "Extensiones de alta calidad cosidas profesionalmente" },
-                        { nombre: "Peinados especiales", precio: "Desde $20", descripcion: "Peinados para eventos y ocasiones especiales" },
-                        { nombre: "Pulido de horquillas", precio: "$15", descripcion: "Tratamiento para alisar y dar brillo" }
+                        { nombre: "Diseños de color - Balayage", precio: "Desde $50", descripcion: "Técnicas de coloración premium" },
+                        { nombre: "Alta frecuencia capilar", precio: "$5", descripcion: "Tratamiento capilar que fortalece el cabello, previene la caída y estimula su crecimiento" },
+                        { nombre: "Repolarización capilar", precio: "$20", descripcion: "Reparación profunda del cabello dañado" },
+                        { nombre: "Extensiones cosidas", precio: "$30", descripcion: "Extensiones cosidas profesionalmente" },
+                        { nombre: "Peinados", precio: "Desde $8", descripcion: "Peinados para todo evento y ocasiones especiales" },
+                        { nombre: "Pulido de horquillas", precio: "$10", descripcion: "Procedimiento para cortar horquillas sin perjudicar el largo" }
                     ]
                 },
                 unas: {
                     nombre: "💅 Manicura & Pedicura",
                     descripcion: "Cuidado profesional para tus uñas",
                     items: [
-                        { nombre: "Manicura tradicional", precio: "$12", descripcion: "Manicura clásica con esmaltado" },
-                        { nombre: "Manicura en gel", precio: "$18", descripcion: "Manicura con esmalte gel de larga duración" },
-                        { nombre: "Pedicura completa", precio: "$20", descripcion: "Cuidado completo para tus pies" },
-                        { nombre: "Extensión de uñas", precio: "$25", descripcion: "Uñas más largas y elegantes" },
-                        { nombre: "Baby boomer y encapsulados", precio: "$30", descripcion: "Técnicas avanzadas de nail art" },
-                        { nombre: "Uñas acrílicas y gel", precio: "$28", descripcion: "Uñas resistentes y duraderas" }
+                        { nombre: "Manicura tradicional", precio: "Desde $4", descripcion: "Manicura clásica con esmaltado" },
+                        { nombre: "Manicura en gel", precio: "Desde $8", descripcion: "Manicura con esmalte gel de larga duración" },
+                        { nombre: "Pedicura completa", precio: "Desde $8", descripcion: "Cuidado completo para tus pies" },
+                        { nombre: "Extensión de uñas", precio: "Desde $10", descripcion: "Uñas más largas y elegantes, logradas únicamente con tips" },
+                        { nombre: "Baby boomer y encapsulados", precio: "Desde $25", descripcion: "Técnicas avanzadas de nail art" },
+                        { nombre: "Uñas acrílicas y gel", precio: "Desde $15", descripcion: "Uñas resistentes y duraderas" }
                     ]
                 },
                 cejas: {
                     nombre: "👁️ Cejas & Pestañas",
                     descripcion: "Realza tu mirada con nuestros tratamientos",
                     items: [
-                        { nombre: "Microblading/Microshading", precio: "$120", descripcion: "Cejas perfectas con técnica de micropigmentación" },
-                        { nombre: "Lash lifting efecto rimel", precio: "$35", descripcion: "Pestañas curvadas naturalmente" },
-                        { nombre: "Cejas con henna", precio: "$15", descripcion: "Tinte natural para cejas más definidas" },
-                        { nombre: "Laminado de cejas", precio: "$25", descripcion: "Cejas más voluminosas y ordenadas" },
-                        { nombre: "Pestañas punto a punto", precio: "$40", descripcion: "Extensiones de pestañas individuales" },
-                        { nombre: "Depilación con hilo", precio: "$8", descripcion: "Depilación precisa y delicada" }
+                        { nombre: "Microblading/Microshading", precio: "$70", descripcion: "Cejas perfectas con técnica de micropigmentación" },
+                        { nombre: "Lash lifting efecto rimel", precio: "$20", descripcion: "Pestañas curvadas naturalmente" },
+                        { nombre: "Cejas con henna", precio: "$10", descripcion: "Tinte natural para cejas más definidas" },
+                        { nombre: "Laminado de cejas", precio: "$20", descripcion: "Cejas más voluminosas y ordenadas" },
+                        { nombre: "Pestañas punto a punto", precio: "$10", descripcion: "Extensiones de pestañas con técnica clásica para un acabado natural y elegante" },
+                        { nombre: "Depilación con cera ó hilo", precio: "$3", descripcion: "Depilación precisa y delicada" }
                     ]
                 },
                 facial: {
                     nombre: "✨ Tratamientos Faciales",
                     descripcion: "Cuidado especializado para tu rostro",
                     items: [
-                        { nombre: "Limpieza facial profunda", precio: "$35", descripcion: "Limpieza completa y hidratación facial" },
-                        { nombre: "Exfoliación corporal", precio: "$40", descripcion: "Renovación completa de la piel" },
-                        { nombre: "Makeup profesional", precio: "Desde $25", descripcion: "Maquillaje para eventos especiales" },
-                        { nombre: "Depilación corporal con cera", precio: "Desde $15", descripcion: "Depilación suave y duradera" }
+                        { nombre: "Limpieza facial profunda", precio: "$25", descripcion: "Limpieza completa y hidratación facial" },
+                        { nombre: "Exfoliación corporal", precio: "$30", descripcion: "Renovación completa de la piel" },
+                        { nombre: "Makeup profesional", precio: "Desde $20", descripcion: "Maquillaje para eventos especiales" },
+                        { nombre: "Depilación facial con cera ó hilo", precio: "Desde $13", descripcion: "Depilación suave y duradera" },
+                        { nombre: "Depilación de axilas con cera ó hilo", precio: "Desde $3", descripcion: "Depilación suave y duradera" }
                     ]
                 },
                 relajacion: {
                     nombre: "🌿 Bienestar & Relajación",
                     descripcion: "Momentos de paz y relajación",
                     items: [
-                        { nombre: "Masajes relajantes", precio: "$45", descripcion: "Masajes terapéuticos para tu bienestar" }
+                        { nombre: "Masajes relajantes", precio: "$20", descripcion: "Masajes terapéuticos para tu bienestar" }
                     ]
                 }
             },
@@ -888,11 +889,15 @@
             keywords: {
                 cortes: ["corte", "cortar", "cabello", "pelo", "tijera"],
                 manicura: ["uñas", "manicura", "esmalte", "nail"],
-                cejas: ["cejas", "pestañas", "microblading", "henna"],
-                facial: ["facial", "limpieza", "cara", "rostro"],
+                cejas: ["cejas", "pestañas", "microblading", "henna", "laminado"],
+                facial: ["facial", "limpieza", "cara", "rostro", "depilacion", "axila"],
                 precios: ["precio", "costo", "cuanto", "valor"],
                 horarios: ["hora", "horario", "abierto", "cerrado"],
-                ubicacion: ["donde", "ubicacion", "direccion", "lugar"]
+                ubicacion: ["donde", "ubicacion", "direccion", "lugar"],
+                masajes: ["masaje", "relajante", "terapeutico"],
+                alisado: ["alisado", "keratina", "liso"],
+                tinte: ["tinte", "color", "rayitos", "balayage"],
+                extensiones: ["extensiones", "pestañas", "punto", "cosidas"]
             }
         };
 
@@ -912,7 +917,7 @@
             window.open(whatsappURL, '_blank');
         }
 
-        // Menús interactivos
+        // Menús interactivos (ahora solo se usan internamente)
         function showMenuServicios() {
             const opciones = Object.keys(spaInfo.servicios).map(key => 
                 `<div class="option-btn" onclick="showCategoriaServicios('${key}')">${spaInfo.servicios[key].nombre}</div>`
@@ -930,49 +935,59 @@
         }
 
         function showCategoriaServicios(categoria) {
-            const cat = spaInfo.servicios[categoria];
+            showTyping(true);
             
-            let mensaje = `<div style="text-align: center; margin-bottom: 15px;">
-                <h3 style="color: #ff6b9d; font-size: clamp(1.1rem, 4vw, 1.3rem); margin-bottom: 8px;">${cat.nombre}</h3>
-                <p style="color: #ccc; font-style: italic; font-size: clamp(0.85rem, 3vw, 0.95rem);">${cat.descripcion}</p>
-            </div>`;
-            
-            cat.items.forEach(item => {
-                mensaje += `<div style="background: rgba(255,107,157,0.1); padding: clamp(10px, 3vw, 15px); margin: clamp(8px, 2vw, 10px) 0; border-radius: clamp(10px, 3vw, 15px); border-left: 3px solid #ff6b9d;">
-                    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 5px; gap: 10px;">
-                        <strong style="color: #fff; font-size: clamp(0.95rem, 3.5vw, 1.1rem); flex: 1;">${item.nombre}</strong>
-                        <span style="background: linear-gradient(135deg, #ff6b9d, #c44569); padding: clamp(4px, 1.5vw, 5px) clamp(8px, 2.5vw, 12px); border-radius: clamp(15px, 4vw, 20px); color: white; font-weight: bold; font-size: clamp(0.75rem, 2.5vw, 0.9rem); white-space: nowrap;">${item.precio}</span>
-                    </div>
-                    <p style="color: #bbb; font-size: clamp(0.8rem, 2.8vw, 0.95rem); margin: 5px 0; line-height: 1.4;">${item.descripcion}</p>
+            setTimeout(() => {
+                const cat = spaInfo.servicios[categoria];
+                
+                let mensaje = `<div style="text-align: center; margin-bottom: 15px;">
+                    <h3 style="color: #ff6b9d; font-size: clamp(1.1rem, 4vw, 1.3rem); margin-bottom: 8px;">${cat.nombre}</h3>
+                    <p style="color: #ccc; font-style: italic; font-size: clamp(0.85rem, 3vw, 0.95rem);">${cat.descripcion}</p>
                 </div>`;
-            });
+                
+                cat.items.forEach(item => {
+                    mensaje += `<div style="background: rgba(255,107,157,0.1); padding: clamp(10px, 3vw, 15px); margin: clamp(8px, 2vw, 10px) 0; border-radius: clamp(10px, 3vw, 15px); border-left: 3px solid #ff6b9d;">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 5px; gap: 10px;">
+                            <strong style="color: #fff; font-size: clamp(0.95rem, 3.5vw, 1.1rem); flex: 1;">${item.nombre}</strong>
+                            <span style="background: linear-gradient(135deg, #ff6b9d, #c44569); padding: clamp(4px, 1.5vw, 5px) clamp(8px, 2.5vw, 12px); border-radius: clamp(15px, 4vw, 20px); color: white; font-weight: bold; font-size: clamp(0.75rem, 2.5vw, 0.9rem); white-space: nowrap;">${item.precio}</span>
+                        </div>
+                        <p style="color: #bbb; font-size: clamp(0.8rem, 2.8vw, 0.95rem); margin: 5px 0; line-height: 1.4;">${item.descripcion}</p>
+                    </div>`;
+                });
 
-            const whatsappBtn = `<div style="text-align: center; margin-top: 15px;">
-                <button class="whatsapp-btn" onclick="agendarCitaWhatsApp()" style="width: 100%; max-width: 280px;">📱 Agendar por WhatsApp</button>
-            </div>`;
-            
-            addBotMessage(mensaje + whatsappBtn);
+                const whatsappBtn = `<div style="text-align: center; margin-top: 15px;">
+                    <button class="whatsapp-btn" onclick="agendarCitaWhatsApp()" style="width: 100%; max-width: 280px;">📱 Agendar por WhatsApp</button>
+                </div>`;
+                
+                showTyping(false);
+                addBotMessage(mensaje + whatsappBtn);
+            }, 1000);
         }
 
         function showPreciosCategoria(categoria) {
-            const cat = spaInfo.servicios[categoria];
+            showTyping(true);
             
-            let mensaje = `<div style="text-align: center; margin-bottom: 15px;">
-                <h3 style="color: #f8b500; font-size: clamp(1.1rem, 4vw, 1.3rem); margin-bottom: 8px;">💰 ${cat.nombre} - Precios</h3>
-            </div>`;
-            
-            cat.items.forEach(item => {
-                mensaje += `<div style="display: flex; justify-content: space-between; align-items: center; padding: clamp(10px, 3vw, 12px); margin: clamp(6px, 2vw, 8px) 0; background: rgba(248,181,0,0.1); border-radius: clamp(8px, 2.5vw, 10px); border-left: 3px solid #f8b500; gap: 10px;">
-                    <span style="color: #fff; font-size: clamp(0.85rem, 3vw, 1rem); flex: 1;">${item.nombre}</span>
-                    <span style="color: #f8b500; font-weight: bold; font-size: clamp(0.9rem, 3.5vw, 1.1rem); white-space: nowrap;">${item.precio}</span>
+            setTimeout(() => {
+                const cat = spaInfo.servicios[categoria];
+                
+                let mensaje = `<div style="text-align: center; margin-bottom: 15px;">
+                    <h3 style="color: #f8b500; font-size: clamp(1.1rem, 4vw, 1.3rem); margin-bottom: 8px;">💰 ${cat.nombre} - Precios</h3>
                 </div>`;
-            });
+                
+                cat.items.forEach(item => {
+                    mensaje += `<div style="display: flex; justify-content: space-between; align-items: center; padding: clamp(10px, 3vw, 12px); margin: clamp(6px, 2vw, 8px) 0; background: rgba(248,181,0,0.1); border-radius: clamp(8px, 2.5vw, 10px); border-left: 3px solid #f8b500; gap: 10px;">
+                        <span style="color: #fff; font-size: clamp(0.85rem, 3vw, 1rem); flex: 1;">${item.nombre}</span>
+                        <span style="color: #f8b500; font-weight: bold; font-size: clamp(0.9rem, 3.5vw, 1.1rem); white-space: nowrap;">${item.precio}</span>
+                    </div>`;
+                });
 
-            const opciones = cat.items.slice(0, 3).map(item => 
-                `<div class="option-btn" onclick="agendarServicioWhatsApp('${item.nombre}', '${item.precio}')" style="margin: 5px 0;">Agendar ${item.nombre.split(' ')[0]}</div>`
-            ).join('');
+                const opciones = cat.items.slice(0, 3).map(item => 
+                    `<div class="option-btn" onclick="agendarServicioWhatsApp('${item.nombre}', '${item.precio}')" style="margin: 5px 0;">Agendar ${item.nombre.split(' ')[0]}</div>`
+                ).join('');
 
-            addBotMessageWithOptions(mensaje, opciones);
+                showTyping(false);
+                addBotMessageWithOptions(mensaje, opciones);
+            }, 900);
         }
 
         // Inicializar chat
@@ -991,10 +1006,21 @@
             
             showTyping(true);
             setTimeout(async () => {
-                const response = await getBotResponse(message);
-                showTyping(false);
-                addBotMessage(response);
-            }, 1000);
+                try {
+                    const response = await getBotResponse(message);
+                    showTyping(false);
+                    
+                    // Si la respuesta requiere opciones interactivas
+                    if (typeof response === 'object' && response.message && response.options) {
+                        addBotMessageWithOptions(response.message, response.options);
+                    } else {
+                        addBotMessage(response);
+                    }
+                } catch (error) {
+                    showTyping(false);
+                    addBotMessage("Lo siento, hubo un error. Por favor intenta de nuevo.");
+                }
+            }, 1200);
         }
 
         async function sendMessage() {
@@ -1012,10 +1038,17 @@
                 try {
                     const response = await getBotResponse(message);
                     showTyping(false);
-                    addBotMessage(response);
+                    
+                    // Si la respuesta requiere opciones interactivas
+                    if (typeof response === 'object' && response.message && response.options) {
+                        addBotMessageWithOptions(response.message, response.options);
+                    } else {
+                        addBotMessage(response);
+                    }
                 } catch (error) {
                     showTyping(false);
-                    addBotMessage("Lo siento, hubo un error. Por favor intenta de nuevo.");
+                    addBotMessage("Lo siento, hubo un error. Por favor intenta de nuevo. 😊");
+                    console.error('Error:', error);
                 }
             }, 1200);
         }
@@ -1084,12 +1117,30 @@
             const typingIndicator = document.getElementById('typingIndicator');
             const sendButton = document.getElementById('sendButton');
             
-            typingIndicator.style.display = show ? 'flex' : 'none';
-            sendButton.disabled = show;
-            
             if (show) {
+                // Crear un nuevo indicador de carga al final
+                const messagesContainer = document.getElementById('chatMessages');
+                const typingDiv = document.createElement('div');
+                typingDiv.className = 'message bot-message typing-message';
+                typingDiv.innerHTML = `
+                    <div class="message-avatar">💄</div>
+                    <div class="typing-dots">
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                    </div>
+                `;
+                messagesContainer.appendChild(typingDiv);
                 scrollToBottom();
+            } else {
+                // Remover el indicador de carga
+                const typingMessage = document.querySelector('.typing-message');
+                if (typingMessage) {
+                    typingMessage.remove();
+                }
             }
+            
+            sendButton.disabled = show;
         }
 
         function scrollToBottom() {
@@ -1144,8 +1195,15 @@
                 'facial': ['facial', 'cara', 'rostro'],
                 'masaje': ['masaje', 'relajante'],
                 'alisado': ['alisado', 'keratina', 'liso'],
-                'tinte': ['tinte', 'color', 'rayitos'],
-                'microblading': ['microblading', 'micropigmentacion']
+                'tinte': ['tinte', 'color', 'rayitos', 'balayage'],
+                'microblading': ['microblading', 'micropigmentacion'],
+                'depilacion': ['depilacion', 'cera', 'hilo', 'axila'],
+                'extensiones': ['extensiones', 'punto'],
+                'henna': ['henna', 'tinte'],
+                'laminado': ['laminado', 'ordenadas'],
+                'exfoliacion': ['exfoliacion', 'renovacion'],
+                'makeup': ['makeup', 'maquillaje'],
+                'peinados': ['peinados', 'eventos']
             };
             
             for (const [key, values] of Object.entries(keywords)) {
@@ -1182,6 +1240,26 @@
             const message = userMessage.toLowerCase();
             
             // Respuestas inteligentes para consultas específicas
+            
+            // Servicios completos (respuesta al botón "Ver Servicios")
+            if (message.includes('servicios') && !message.includes('precio') && !message.includes('costo')) {
+                const opciones = Object.keys(spaInfo.servicios).map(key => 
+                    `<div class="option-btn" onclick="showCategoriaServicios('${key}')">${spaInfo.servicios[key].nombre}</div>`
+                ).join('');
+                
+                addBotMessageWithOptions("🎨 **Nuestros servicios por categorías:**\n\nSelecciona la categoría que te interesa:", opciones);
+                return;
+            }
+
+            // Precios completos (respuesta al botón "Ver Precios") 
+            if ((message.includes('precios') || (message.includes('precio') && message.includes('categoria'))) && !message.includes('corte') && !message.includes('manicura')) {
+                const opciones = Object.keys(spaInfo.servicios).map(key => 
+                    `<div class="option-btn" onclick="showPreciosCategoria('${key}')">${spaInfo.servicios[key].nombre}</div>`
+                ).join('');
+                
+                addBotMessageWithOptions("💰 **Ver precios por categoría:**\n\nElige la categoría para ver precios detallados:", opciones);
+                return;
+            }
             
             // Búsqueda de servicios específicos
             if (message.includes('corte') || message.includes('cortar')) {
@@ -1238,8 +1316,77 @@
                 return;
             }
 
-            // Cejas y pestañas
-            if (message.includes('cejas') || message.includes('pestañas') || message.includes('microblading')) {
+            // Depilación específica
+            if (message.includes('depilacion') || message.includes('depilar') || message.includes('cera') || message.includes('hilo')) {
+                let respuesta = `<div style="text-align: center; margin-bottom: 20px;">
+                    <h3 style="color: #ff6b9d; font-size: 1.3rem; margin-bottom: 10px;">🪒 Servicios de Depilación</h3>
+                </div>`;
+                
+                const depilacionItems = [
+                    ...spaInfo.servicios.cejas.items.filter(item => item.nombre.toLowerCase().includes('depilacion')),
+                    ...spaInfo.servicios.facial.items.filter(item => item.nombre.toLowerCase().includes('depilacion'))
+                ];
+                
+                depilacionItems.forEach(item => {
+                    respuesta += `<div style="background: rgba(255,107,157,0.1); padding: 15px; margin: 10px 0; border-radius: 15px; border-left: 3px solid #ff6b9d;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px;">
+                            <strong style="color: #fff; font-size: 1.1rem;">${item.nombre}</strong>
+                            <span style="background: linear-gradient(135deg, #ff6b9d, #c44569); padding: 5px 12px; border-radius: 20px; color: white; font-weight: bold;">${item.precio}</span>
+                        </div>
+                        <p style="color: #bbb; font-size: 0.95rem;">${item.descripcion}</p>
+                    </div>`;
+                });
+                
+                respuesta += `<div style="text-align: center; margin-top: 20px;">
+                    <button class="whatsapp-btn" onclick="agendarCitaWhatsApp()">📱 Agendar por WhatsApp</button>
+                </div>`;
+                
+                return respuesta;
+            }
+
+            // Alisado y keratina
+            if (message.includes('alisado') || message.includes('keratina') || message.includes('liso')) {
+                const alisadoItem = spaInfo.servicios.capilar.items.find(item => 
+                    item.nombre.toLowerCase().includes('alisado')
+                );
+                
+                return `<div style="text-align: center; margin-bottom: 20px;">
+                    <h3 style="color: #ff6b9d; font-size: 1.3rem; margin-bottom: 10px;">✨ Alisado con Keratina</h3>
+                </div>
+                
+                <div style="background: rgba(255,107,157,0.1); padding: 20px; margin: 15px 0; border-radius: 15px; border-left: 3px solid #ff6b9d;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                        <strong style="color: #fff; font-size: 1.2rem;">${alisadoItem.nombre}</strong>
+                        <span style="background: linear-gradient(135deg, #ff6b9d, #c44569); padding: 8px 15px; border-radius: 20px; color: white; font-weight: bold; font-size: 1.1rem;">${alisadoItem.precio}</span>
+                    </div>
+                    <p style="color: #bbb; font-size: 1rem; line-height: 1.5;">${alisadoItem.descripcion}</p>
+                </div>
+                
+                <div style="text-align: center; margin-top: 20px;">
+                    <button class="whatsapp-btn" onclick="agendarServicioWhatsApp('${alisadoItem.nombre}', '${alisadoItem.precio}')">📱 Agendar Alisado</button>
+                </div>`;
+            }
+
+            // Masajes
+            if (message.includes('masaje') || message.includes('relajante') || message.includes('terapeutico')) {
+                const masajeItem = spaInfo.servicios.relajacion.items[0];
+                
+                return `<div style="text-align: center; margin-bottom: 20px;">
+                    <h3 style="color: #ff6b9d; font-size: 1.3rem; margin-bottom: 10px;">🌿 Masajes Relajantes</h3>
+                </div>
+                
+                <div style="background: rgba(255,107,157,0.1); padding: 20px; margin: 15px 0; border-radius: 15px; border-left: 3px solid #ff6b9d;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                        <strong style="color: #fff; font-size: 1.2rem;">${masajeItem.nombre}</strong>
+                        <span style="background: linear-gradient(135deg, #ff6b9d, #c44569); padding: 8px 15px; border-radius: 20px; color: white; font-weight: bold; font-size: 1.1rem;">${masajeItem.precio}</span>
+                    </div>
+                    <p style="color: #bbb; font-size: 1rem; line-height: 1.5;">${masajeItem.descripcion}</p>
+                </div>
+                
+                <div style="text-align: center; margin-top: 20px;">
+                    <button class="whatsapp-btn" onclick="agendarServicioWhatsApp('${masajeItem.nombre}', '${masajeItem.precio}')">📱 Agendar Masaje</button>
+                </div>`;
+            }
                 const cejasData = spaInfo.servicios.cejas;
                 
                 let respuesta = `<div style="text-align: center; margin-bottom: 20px;">
@@ -1301,20 +1448,28 @@
                 
                 <div style="background: rgba(255,107,157,0.1); padding: 15px; margin: 10px 0; border-radius: 15px; border-left: 3px solid #ff6b9d;">
                     <h4 style="color: #ff6b9d; margin-bottom: 10px;">✂️ Cortes</h4>
-                    <p style="color: #fff;">• Dama: <span style="color: #f8b500; font-weight: bold;">Desde $15</span></p>
-                    <p style="color: #fff;">• Hombre: <span style="color: #f8b500; font-weight: bold;">Desde $12</span></p>
+                    <p style="color: #fff;">• Dama: <span style="color: #f8b500; font-weight: bold;">Desde $5</span></p>
+                    <p style="color: #fff;">• Hombre: <span style="color: #f8b500; font-weight: bold;">Desde $4</span></p>
                 </div>
                 
                 <div style="background: rgba(255,107,157,0.1); padding: 15px; margin: 10px 0; border-radius: 15px; border-left: 3px solid #ff6b9d;">
                     <h4 style="color: #ff6b9d; margin-bottom: 10px;">💅 Manicura</h4>
-                    <p style="color: #fff;">• Tradicional: <span style="color: #f8b500; font-weight: bold;">$12</span></p>
-                    <p style="color: #fff;">• En gel: <span style="color: #f8b500; font-weight: bold;">$18</span></p>
+                    <p style="color: #fff;">• Tradicional: <span style="color: #f8b500; font-weight: bold;">Desde $4</span></p>
+                    <p style="color: #fff;">• En gel: <span style="color: #f8b500; font-weight: bold;">Desde $8</span></p>
                 </div>
                 
                 <div style="background: rgba(255,107,157,0.1); padding: 15px; margin: 10px 0; border-radius: 15px; border-left: 3px solid #ff6b9d;">
                     <h4 style="color: #ff6b9d; margin-bottom: 10px;">👁️ Cejas & Pestañas</h4>
-                    <p style="color: #fff;">• Microblading: <span style="color: #f8b500; font-weight: bold;">$120</span></p>
-                    <p style="color: #fff;">• Lash lifting: <span style="color: #f8b500; font-weight: bold;">$35</span></p>
+                    <p style="color: #fff;">• Microblading: <span style="color: #f8b500; font-weight: bold;">$70</span></p>
+                    <p style="color: #fff;">• Lash lifting: <span style="color: #f8b500; font-weight: bold;">$20</span></p>
+                    <p style="color: #fff;">• Cejas con henna: <span style="color: #f8b500; font-weight: bold;">$10</span></p>
+                </div>
+                
+                <div style="background: rgba(255,107,157,0.1); padding: 15px; margin: 10px 0; border-radius: 15px; border-left: 3px solid #ff6b9d;">
+                    <h4 style="color: #ff6b9d; margin-bottom: 10px;">✨ Faciales & Depilación</h4>
+                    <p style="color: #fff;">• Limpieza facial: <span style="color: #f8b500; font-weight: bold;">$25</span></p>
+                    <p style="color: #fff;">• Depilación facial: <span style="color: #f8b500; font-weight: bold;">Desde $13</span></p>
+                    <p style="color: #fff;">• Masajes: <span style="color: #f8b500; font-weight: bold;">$20</span></p>
                 </div>
                 
                 <div style="text-align: center; margin-top: 20px;">
@@ -1377,7 +1532,7 @@
 
             // Respuesta de Claude AI como fallback
             try {
-                const prompt = `Eres el asistente virtual de Diana Padilla Estética & Spa. Un cliente te pregunta: "${userMessage}"\n\nINFORMACIÓN COMPLETA DEL SPA:\n\nSERVICIOS:\n${Object.values(spaInfo.servicios).map(cat => `${cat.nombre}:\n${cat.items.map(item => `• ${item.nombre} - ${item.precio}: ${item.descripcion}`).join('\n')}`).join('\n\n')}\n\nHORARIOS: ${spaInfo.horarios.dias} de ${spaInfo.horarios.horario1} y ${spaInfo.horarios.horario2}. ${spaInfo.horarios.descanso}.\n\nUBICACIÓN: ${spaInfo.ubicacion}\nCONTACTO: ${spaInfo.telefono}\n\nResponde de manera profesional, amigable y útil. Incluye emojis. Máximo 120 palabras. Si es apropiado, sugiere agendar por WhatsApp.`;
+                const prompt = `Eres el asistente virtual de Diana Padilla Estética & Spa en Cuenca, Ecuador. Un cliente te pregunta: "${userMessage}"\n\nINFORMACIÓN COMPLETA DEL SPA:\n\nUBICACIÓN: ${spaInfo.ubicacion}, ${spaInfo.direccion}\nCONTACTO: ${spaInfo.telefono}\nHORARIOS: ${spaInfo.horarios.dias} de ${spaInfo.horarios.horario1} y ${spaInfo.horarios.horario2}. ${spaInfo.horarios.descanso}.\n\nSERVICIOS Y PRECIOS:\n${Object.values(spaInfo.servicios).map(cat => `${cat.nombre}:\n${cat.items.map(item => `• ${item.nombre} - ${item.precio}: ${item.descripcion}`).join('\n')}`).join('\n\n')}\n\nINSTRUCCIONES:\n- Responde de manera profesional, amigable y útil\n- Incluye emojis apropiados\n- Máximo 150 palabras\n- Si es apropiado, sugiere agendar por WhatsApp\n- Si preguntan por servicios específicos, incluye precios\n- Mantén un tono cálido y profesional\n- Si no entiendes algo, pide clarificación amablemente`;
 
                 const response = await fetch("https://api.anthropic.com/v1/messages", {
                     method: "POST",
@@ -1386,18 +1541,18 @@
                     },
                     body: JSON.stringify({
                         model: "claude-sonnet-4-20250514",
-                        max_tokens: 300,
+                        max_tokens: 400,
                         messages: [{ role: "user", content: prompt }]
                     })
                 });
 
-                if (!response.ok) throw new Error('API error');
+                if (!response.ok) throw new Error(`API error: ${response.status}`);
 
                 const data = await response.json();
                 let botResponse = data.content[0].text;
                 
                 // Agregar botón de WhatsApp si es apropiado
-                if (message.includes('agendar') || message.includes('cita') || message.includes('precio')) {
+                if (message.includes('agendar') || message.includes('cita') || message.includes('precio') || message.includes('reserva')) {
                     botResponse += '\n\n<button class="whatsapp-btn" onclick="agendarCitaWhatsApp()">📱 Agendar por WhatsApp</button>';
                 }
                 
@@ -1405,17 +1560,29 @@
                 return botResponse;
                 
             } catch (error) {
+                console.error('Claude API Error:', error);
                 return getLocalFallbackResponse(userMessage);
             }
         }
 
         function getLocalFallbackResponse(userMessage) {
-            const responses = [
-                `¡Hola! 😊 Soy tu asistente de Diana Padilla Spa. Puedo ayudarte con:\n\n✨ Información de servicios\n💰 Precios detallados\n🕐 Horarios\n📍 Ubicación\n📅 Agendar citas\n\n¿En qué te puedo ayudar específicamente?`,
-                `🎨 **En Diana Padilla Spa tenemos:**\n\n💇‍♀️ Arte Capilar\n💅 Manicura & Pedicura\n👁️ Cejas & Pestañas\n✨ Tratamientos Faciales\n🌿 Masajes & Relajación\n\n<button class="whatsapp-btn" onclick="agendarCitaWhatsApp()">📱 Agendar por WhatsApp</button>\n\n¿Qué servicio te interesa?`
-            ];
+            const message = userMessage.toLowerCase();
             
-            return responses[Math.floor(Math.random() * responses.length)];
+            // Respuestas más inteligentes según el contexto
+            if (message.includes('hola') || message.includes('buenos') || message.includes('buenas')) {
+                return `¡Hola! 👋 Bienvenida a Diana Padilla Estética & Spa. \n\nSoy tu asistente virtual y estoy aquí para ayudarte con:\n✨ Servicios (cortes desde $4)\n💰 Precios actualizados\n🕐 Horarios\n📍 Ubicación en Cuenca\n📅 Agendar citas\n\n¿En qué puedo ayudarte hoy? 😊\n\n<button class="whatsapp-btn" onclick="agendarCitaWhatsApp()">📱 Contactar por WhatsApp</button>`;
+            }
+            
+            if (message.includes('gracias') || message.includes('perfecto') || message.includes('excelente')) {
+                return `¡De nada! 😊 Me alegra poder ayudarte. \n\nSi necesitas agendar una cita o tienes más preguntas, no dudes en escribirme. Estoy aquí para ti las 24 horas.\n\n<button class="whatsapp-btn" onclick="agendarCitaWhatsApp()">📱 Agendar por WhatsApp</button>`;
+            }
+            
+            if (message.includes('adios') || message.includes('hasta luego') || message.includes('chao')) {
+                return `¡Hasta luego! 👋 Fue un placer ayudarte.\n\nRecuerda que puedes contactarnos cuando gustes:\n📞 ${spaInfo.telefono}\n📍 ${spaInfo.ubicacion}\n\n¡Esperamos verte pronto en Diana Padilla Spa! ✨`;
+            }
+            
+            // Respuesta general mejorada
+            return `¡Hola! 😊 Soy tu asistente de Diana Padilla Spa en Cuenca.\n\nPuedo ayudarte con:\n✨ Servicios de belleza\n💰 Precios (desde $3)\n🕐 Horarios (Lun-Sáb)\n📍 Ubicación (Ricaurte)\n📅 Agendar citas\n\nEscribe lo que necesitas o haz clic aquí:\n\n<button class="whatsapp-btn" onclick="agendarCitaWhatsApp()">📱 Contactar por WhatsApp</button>\n\n¿En qué te puedo ayudar específicamente? 💄`;
         }
     </script>
 </body>
