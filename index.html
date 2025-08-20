@@ -98,6 +98,41 @@
         let cart = [];
         let currentService = null;
         let conversationHistory = [];
+        let userName = null; // Variable para guardar el nombre del usuario
+
+        // Función para extraer nombre del mensaje
+        function extractUserName(message) {
+            const lowerMessage = message.toLowerCase();
+            
+            // Patrones para detectar presentaciones
+            const patterns = [
+                /(?:hola|hi|hello|buenas|buenos días|buenas tardes|buenas noches),?\s*soy\s+(\w+)/i,
+                /(?:hola|hi|hello|buenas|buenos días|buenas tardes|buenas noches),?\s*me llamo\s+(\w+)/i,
+                /(?:hola|hi|hello|buenas|buenos días|buenas tardes|buenas noches),?\s*mi nombre es\s+(\w+)/i,
+                /soy\s+(\w+)/i,
+                /me llamo\s+(\w+)/i,
+                /mi nombre es\s+(\w+)/i
+            ];
+            
+            for (let pattern of patterns) {
+                const match = message.match(pattern);
+                if (match) {
+                    return match[1].charAt(0).toUpperCase() + match[1].slice(1).toLowerCase();
+                }
+            }
+            return null;
+        }
+
+        // Función para personalizar respuestas con el nombre
+        function personalizeMessage(message) {
+            if (userName) {
+                // Reemplazar saludos genéricos con saludos personalizados
+                message = message.replace(/¡Hola!/g, `¡Hola ${userName}!`);
+                message = message.replace(/¡Perfecto!/g, `¡Perfecto ${userName}!`);
+                message = message.replace(/Bienvenida/g, `Bienvenida ${userName}`);
+            }
+            return message;
+        }
 
         // Función para abrir modal de descripción
         function openDescriptionModal(serviceName, servicePrice, serviceDescription) {
@@ -357,7 +392,7 @@
 
         // Inicializar chat
         document.addEventListener('DOMContentLoaded', function() {
-            addBotMessage("¡Hola! 👋 Soy tu asistente virtual inteligente de Diana Padilla Estética y Spa.\n\n🛒 **NUEVA FUNCIONALIDAD:** Ahora puedes agregar múltiples servicios a tu carrito, personalizar cada uno y agendar todo junto.\n\nPuedo ayudarte con:\n✨ Información detallada de servicios\n💰 Precios específicos\n🕐 Horarios y disponibilidad\n📍 Ubicación\n🛒 Carrito de servicios personalizado\n📅 Agendar tu cita perfecta\n\n¿En qué puedo ayudarte hoy?");
+            addBotMessage("¡Hola! 👋 Soy tu asistente virtual inteligente de Diana Padilla Estética y Spa.\n\n🛒 **NUEVA FUNCIONALIDAD:** Carrito de servicios personalizado.\n\n**Formas súper fáciles de usarme:**\n• Escribe "servicios" para ver todo\n• Escribe números: "1" para arte capilar\n• Describe directo: "corte de dama"\n• Pregunta precios: "cuánto cuesta..."\n\n*Si te llamas de alguna forma, preséntate y te daré una atención más personalizada* 😊\n\n¿En qué puedo ayudarte hoy?");
             
             // Configurar fecha mínima (hoy)
             const today = new Date().toISOString().split('T')[0];
@@ -379,11 +414,11 @@
                 showTyping(false);
                 
                 if (response) {
-                    addBotMessage(response);
+                    addBotMessage(personalizeMessage(response));
                 } else {
-                    addBotMessage("¡Hola! 😊 Soy tu asistente de Diana Padilla Estética y Spa. ¿En qué puedo ayudarte? Puedo contarte sobre nuestros servicios, precios, horarios o ayudarte a agendar una cita.");
+                    addBotMessage(personalizeMessage("¡Hola! 😊 Soy tu asistente de Diana Padilla Estética y Spa. ¿En qué puedo ayudarte? Puedo contarte sobre nuestros servicios, precios, horarios o ayudarte a agendar una cita."));
                 }
-            }, 1200);
+            }, 800); // Reducido de 1200 a 800ms
         }
 
         function sendMessage() {
@@ -402,11 +437,11 @@
                 showTyping(false);
                 
                 if (response) {
-                    addBotMessage(response);
+                    addBotMessage(personalizeMessage(response));
                 } else {
-                    addBotMessage("¡Perfecto! 😊 Te puedo ayudar con información sobre nuestros servicios, precios desde $3, horarios de Lunes a Sábado, ubicación en Ricaurte o agendar tu cita. ¿Qué te interesa saber?");
+                    addBotMessage(personalizeMessage("¡Perfecto! 😊 Te puedo ayudar con información sobre nuestros servicios, precios desde $3, horarios de Lunes a Sábado, ubicación en Ricaurte o agendar tu cita. ¿Qué te interesa saber?"));
                 }
-            }, 1200);
+            }, 800); // Reducido de 1200 a 800ms
         }
 
         function addUserMessage(message) {
