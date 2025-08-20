@@ -206,6 +206,86 @@
             margin-top: 0.5rem;
         }
 
+        /* Service Cards */
+        .service-card {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 107, 157, 0.3);
+            border-radius: 15px;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(255, 107, 157, 0.3);
+        }
+
+        .service-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .service-title {
+            font-weight: 600;
+            color: var(--accent);
+        }
+
+        .service-price {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .service-description {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 1rem;
+        }
+
+        .service-actions {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        /* Buttons */
+        .btn {
+            border: none;
+            border-radius: 20px;
+            padding: 0.6rem 1.2rem;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #ff6b9d, #c44569);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 107, 157, 0.3);
+        }
+
+        .btn-whatsapp {
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 157, 0.4);
+        }
+
         /* Quick Actions */
         .quick-actions {
             display: flex;
@@ -257,46 +337,6 @@
         .welcome-message p {
             color: rgba(255, 255, 255, 0.8);
             margin-bottom: 1.5rem;
-        }
-
-        /* Buttons */
-        .whatsapp-btn {
-            background: linear-gradient(135deg, #25D366, #128C7E);
-            border: none;
-            border-radius: 25px;
-            padding: 0.8rem 1.5rem;
-            color: white;
-            cursor: pointer;
-            font-size: 0.9rem;
-            font-weight: 500;
-            margin: 0.5rem 0;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .whatsapp-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
-        }
-
-        .add-to-cart-btn {
-            background: linear-gradient(135deg, #ff6b9d, #c44569);
-            border: none;
-            border-radius: 20px;
-            padding: 0.6rem 1.2rem;
-            color: white;
-            cursor: pointer;
-            font-size: 0.85rem;
-            font-weight: 500;
-            margin: 0.3rem 0.3rem 0.3rem 0;
-            transition: all 0.3s ease;
-        }
-
-        .add-to-cart-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 107, 157, 0.4);
         }
 
         /* Input Area */
@@ -480,18 +520,13 @@
                 font-size: 0.9rem;
             }
 
-            .add-to-cart-btn {
-                width: 100%;
-                margin: 0.3rem 0;
+            .service-actions {
+                flex-direction: column;
             }
 
-            .whatsapp-btn {
-                padding: 0.8rem 1.2rem;
-                font-size: 0.85rem;
-                border-radius: 20px;
-                margin: 0.3rem 0;
+            .btn {
                 width: 100%;
-                max-width: 280px;
+                justify-content: center;
             }
 
             .input-container {
@@ -529,6 +564,37 @@
         ::-webkit-scrollbar-thumb:hover {
             background: var(--primary);
         }
+
+        /* Cart Summary */
+        .cart-summary {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 107, 157, 0.3);
+            border-radius: 15px;
+            padding: 1rem;
+            margin: 1rem 0;
+            backdrop-filter: blur(10px);
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .cart-total {
+            font-weight: 700;
+            color: var(--accent);
+            font-size: 1.1rem;
+            margin-top: 0.5rem;
+            padding-top: 0.5rem;
+            border-top: 2px solid var(--primary);
+        }
     </style>
 </head>
 <body>
@@ -564,7 +630,7 @@
                     type="text" 
                     class="message-input" 
                     id="messageInput" 
-                    placeholder="Escribe tu mensaje aquí... 💬"
+                    placeholder="Escribe tu mensaje o un número del 1 al 5... 💬"
                     onkeypress="handleKeyPress(event)"
                 >
                 <button class="send-button" id="sendButton" onclick="sendMessage()">
@@ -595,40 +661,110 @@
             servicios: {
                 capilar: {
                     nombre: "💇‍♀️ Arte Capilar",
+                    emoji: "💇‍♀️",
                     items: [
-                        { nombre: "Cortes de dama", precio: "Desde $5", descripcion: "Cortes modernos y clásicos para damas" },
-                        { nombre: "Cortes de hombre", precio: "Desde $4", descripcion: "Cortes masculinos profesionales" },
-                        { nombre: "Alisado con keratina", precio: "Desde $45", descripcion: "Alisado profesional con productos orgánicos" },
-                        { nombre: "Tintes y rayitos", precio: "Desde $30", descripcion: "Coloración completa, rayitos, marmoleados" }
+                        { 
+                            id: "corte_dama",
+                            nombre: "Corte de Dama", 
+                            precio: 5, 
+                            descripcion: "Cortes modernos y clásicos para damas, incluye lavado y peinado" 
+                        },
+                        { 
+                            id: "corte_hombre",
+                            nombre: "Corte de Hombre", 
+                            precio: 4, 
+                            descripcion: "Cortes masculinos profesionales con acabado perfecto" 
+                        },
+                        { 
+                            id: "alisado",
+                            nombre: "Alisado con Keratina", 
+                            precio: 45, 
+                            descripcion: "Alisado profesional con productos orgánicos, cabello sedoso por meses" 
+                        },
+                        { 
+                            id: "tintes",
+                            nombre: "Tintes y Rayitos", 
+                            precio: 30, 
+                            descripcion: "Coloración completa, rayitos, marmoleados con productos de calidad" 
+                        }
                     ]
                 },
                 unas: {
                     nombre: "💅 Manicura & Pedicura",
+                    emoji: "💅",
                     items: [
-                        { nombre: "Manicura tradicional", precio: "Desde $4", descripcion: "Manicura clásica con esmaltado" },
-                        { nombre: "Manicura en gel", precio: "Desde $8", descripcion: "Manicura con esmalte gel de larga duración" },
-                        { nombre: "Pedicura completa", precio: "Desde $8", descripcion: "Cuidado completo para tus pies" }
+                        { 
+                            id: "manicura_tradicional",
+                            nombre: "Manicura Tradicional", 
+                            precio: 4, 
+                            descripcion: "Manicura clásica con limado, cutícula y esmaltado" 
+                        },
+                        { 
+                            id: "manicura_gel",
+                            nombre: "Manicura en Gel", 
+                            precio: 8, 
+                            descripcion: "Manicura con esmalte gel de larga duración, hasta 3 semanas" 
+                        },
+                        { 
+                            id: "pedicura",
+                            nombre: "Pedicura Completa", 
+                            precio: 8, 
+                            descripcion: "Cuidado completo para tus pies con exfoliación y masaje" 
+                        }
                     ]
                 },
                 cejas: {
                     nombre: "👁️ Cejas & Pestañas",
+                    emoji: "👁️",
                     items: [
-                        { nombre: "Microblading", precio: "$70", descripcion: "Cejas perfectas con micropigmentación" },
-                        { nombre: "Lash lifting", precio: "$20", descripcion: "Pestañas curvadas naturalmente" },
-                        { nombre: "Cejas con henna", precio: "$10", descripcion: "Tinte natural para cejas" }
+                        { 
+                            id: "microblading",
+                            nombre: "Microblading", 
+                            precio: 70, 
+                            descripcion: "Cejas perfectas con micropigmentación semi-permanente" 
+                        },
+                        { 
+                            id: "lash_lifting",
+                            nombre: "Lash Lifting", 
+                            precio: 20, 
+                            descripcion: "Pestañas curvadas naturalmente que duran hasta 8 semanas" 
+                        },
+                        { 
+                            id: "cejas_henna",
+                            nombre: "Cejas con Henna", 
+                            precio: 10, 
+                            descripcion: "Tinte natural para cejas con forma perfecta" 
+                        }
                     ]
                 },
                 facial: {
                     nombre: "✨ Tratamientos Faciales",
+                    emoji: "✨",
                     items: [
-                        { nombre: "Limpieza facial", precio: "$25", descripcion: "Limpieza completa y hidratación facial" },
-                        { nombre: "Makeup profesional", precio: "Desde $20", descripcion: "Maquillaje para eventos especiales" }
+                        { 
+                            id: "limpieza_facial",
+                            nombre: "Limpieza Facial", 
+                            precio: 25, 
+                            descripcion: "Limpieza profunda, extracción de puntos negros e hidratación" 
+                        },
+                        { 
+                            id: "makeup",
+                            nombre: "Makeup Profesional", 
+                            precio: 20, 
+                            descripcion: "Maquillaje profesional para eventos especiales" 
+                        }
                     ]
                 },
                 masajes: {
                     nombre: "🌿 Masajes",
+                    emoji: "🌿",
                     items: [
-                        { nombre: "Masajes relajantes", precio: "$20", descripcion: "Masajes terapéuticos para tu bienestar" }
+                        { 
+                            id: "masaje_relajante",
+                            nombre: "Masaje Relajante", 
+                            precio: 20, 
+                            descripcion: "Masaje terapéutico para relajación total y bienestar" 
+                        }
                     ]
                 }
             }
@@ -637,6 +773,9 @@
         // Variables globales
         let cart = [];
         let userName = null;
+        let currentStep = 'welcome';
+        let waitingForDescription = null;
+        let waitingForPayment = null;
 
         // Función para extraer nombre
         function extractUserName(message) {
@@ -664,20 +803,154 @@
                 message = message.replace(/¡Hola!/g, `¡Hola ${userName}!`);
                 message = message.replace(/¡Perfecto!/g, `¡Perfecto ${userName}!`);
                 message = message.replace(/Bienvenida/g, `Bienvenida ${userName}`);
+                message = message.replace(/querida cliente/g, `${userName}`);
             }
             return message;
         }
 
-        // Función para agendar cita por WhatsApp
-        function agendarCitaWhatsApp() {
-            const mensaje = "¡Hola Diana! 👋 Quiero agendar una cita en tu spa. ¿Podrías ayudarme con la disponibilidad?";
-            const whatsappURL = `https://wa.me/${spaInfo.whatsapp}?text=${encodeURIComponent(mensaje)}`;
-            window.open(whatsappURL, '_blank');
+        // Función para agregar al carrito
+        function addToCart(serviceId, serviceName, price, category) {
+            console.log("Agregando al carrito:", serviceId, serviceName, price, category);
+            
+            const existingItem = cart.find(item => item.id === serviceId);
+            if (existingItem) {
+                addBotMessage(personalizeMessage(`${serviceName} ya está en tu carrito. ¿Te gustaría agregarlo de nuevo?`));
+                return;
+            }
+
+            const cartItem = {
+                id: serviceId,
+                name: serviceName,
+                price: price,
+                category: category,
+                description: '',
+                paymentMethod: ''
+            };
+
+            cart.push(cartItem);
+            updateCartCounter();
+            
+            addBotMessage(personalizeMessage(`✨ ¡Genial! He agregado "${serviceName}" a tu carrito.
+
+Ahora cuéntame: ¿Cómo te gustaría este servicio? (Por ejemplo: estilo específico, largo, color, etc.)`));
+            
+            waitingForDescription = serviceId;
         }
 
-        // Función para abrir carrito (placeholder)
+        // Función para establecer método de pago
+        function setPaymentMethod(serviceId, method) {
+            console.log("Estableciendo método de pago:", serviceId, method);
+            
+            const cartItem = cart.find(item => item.id === serviceId);
+            if (cartItem) {
+                cartItem.paymentMethod = method;
+                waitingForPayment = null;
+                
+                addBotMessage(personalizeMessage(`¡Excelente! He guardado que pagarás por ${cartItem.name} con ${method}.
+
+¿Te gustaría agregar más servicios o finalizar tu pedido?
+
+<div class="service-actions">
+    <button class="btn btn-primary" onclick="sendQuickMessage('servicios')">➕ Más servicios</button>
+    <button class="btn btn-whatsapp" onclick="finalizarPedido()">📱 Finalizar pedido</button>
+    <button class="btn btn-secondary" onclick="openCart()">🛒 Ver carrito</button>
+</div>`));
+            }
+        }
+
+        // Función para actualizar contador del carrito
+        function updateCartCounter() {
+            const counter = document.getElementById('cartCounter');
+            if (cart.length > 0) {
+                counter.textContent = cart.length;
+                counter.style.display = 'flex';
+            } else {
+                counter.style.display = 'none';
+            }
+        }
+
+        // Función para mostrar carrito
         function openCart() {
-            addBotMessage(personalizeMessage("🛒 Función de carrito en desarrollo. Por ahora puedes agendar directamente por WhatsApp."));
+            if (cart.length === 0) {
+                addBotMessage(personalizeMessage("🛒 Tu carrito está vacío. ¡Selecciona algunos servicios primero!"));
+                return;
+            }
+
+            let cartHTML = `🛒 Tu carrito de servicios:
+
+<div class="cart-summary">`;
+            let total = 0;
+
+            cart.forEach(item => {
+                cartHTML += `
+<div class="cart-item">
+    <div>
+        <strong>${item.name}</strong> - ${item.price}
+        ${item.description ? `<br><small>Descripción: ${item.description}</small>` : ''}
+        ${item.paymentMethod ? `<br><small>Pago: ${item.paymentMethod}</small>` : ''}
+    </div>
+</div>`;
+                total += item.price;
+            });
+
+            cartHTML += `
+<div class="cart-total">Total: ${total}</div>
+</div>
+
+<div class="service-actions">
+    <button class="btn btn-whatsapp" onclick="finalizarPedido()">📱 Finalizar y Agendar</button>
+    <button class="btn btn-secondary" onclick="clearCart()">🗑️ Limpiar Carrito</button>
+</div>`;
+
+            addBotMessage(personalizeMessage(cartHTML));
+        }
+
+        // Función para limpiar carrito
+        function clearCart() {
+            cart = [];
+            updateCartCounter();
+            addBotMessage(personalizeMessage("🗑️ Carrito limpiado. ¡Puedes empezar de nuevo!"));
+        }
+
+        // Función para finalizar pedido
+        function finalizarPedido() {
+            if (cart.length === 0) {
+                addBotMessage(personalizeMessage("Tu carrito está vacío. Selecciona algunos servicios primero."));
+                return;
+            }
+
+            let mensaje = `¡Hola Diana! 👋 ${userName ? `Soy ${userName} y ` : ''}quiero agendar una cita para los siguientes servicios:
+
+`;
+            let total = 0;
+
+            cart.forEach((item, index) => {
+                mensaje += `${index + 1}. ${item.name} - ${item.price}`;
+                if (item.description) {
+                    mensaje += `\n   Descripción: ${item.description}`;
+                }
+                if (item.paymentMethod) {
+                    mensaje += `\n   Forma de pago: ${item.paymentMethod}`;
+                }
+                mensaje += '\n\n';
+                total += item.price;
+            });
+
+            mensaje += `💰 Total: ${total}
+
+¿Podrías ayudarme con la disponibilidad de horarios? ¡Gracias! ✨`;
+
+            const whatsappURL = `https://wa.me/${spaInfo.whatsapp}?text=${encodeURIComponent(mensaje)}`;
+            window.open(whatsappURL, '_blank');
+            
+            addBotMessage(personalizeMessage("📱 ¡Perfecto! Te he redirigido a WhatsApp con todos los detalles de tu cita. Diana te responderá muy pronto para confirmar tu horario."));
+        }
+
+        // Función para agendar cita por WhatsApp
+        function agendarCitaWhatsApp() {
+            const mensaje = `¡Hola Diana! 👋 ${userName ? `Soy ${userName} y ` : ''}Quiero agendar una cita en tu spa. ¿Podrías ayudarme con la disponibilidad?`;
+            const whatsappURL = `https://wa.me/${spaInfo.whatsapp}?text=${encodeURIComponent(mensaje)}`;
+            window.open(whatsappURL, '_blank');
         }
 
         // Manejo de teclas
@@ -814,132 +1087,174 @@
                 userName = detectedName;
             }
 
-            // Servicios
-            if (message.includes('servicios') || message.includes('1')) {
-                return `🎨 **Nuestros servicios:**
+            // Manejo de descripción del servicio
+            if (waitingForDescription) {
+                const cartItem = cart.find(item => item.id === waitingForDescription);
+                if (cartItem) {
+                    cartItem.description = userMessage;
+                    waitingForDescription = null;
+                    waitingForPayment = cartItem.id;
+                    
+                    return `¡Perfecto! He guardado tu descripción: "${userMessage}"
 
-**Escribe el número del servicio que te interesa:**
+Ahora, ¿cómo te gustaría pagar?
 
-1️⃣ 💇‍♀️ **Arte Capilar** - Cortes, alisado, tintes
-2️⃣ 💅 **Manicura & Pedicura** - Uñas perfectas
-3️⃣ 👁️ **Cejas & Pestañas** - Microblading, lash lifting
-4️⃣ ✨ **Tratamientos Faciales** - Limpieza, makeup
-5️⃣ 🌿 **Masajes** - Relajación y bienestar
-
-*También puedes escribir directamente lo que buscas, ejemplo: "corte de dama"*`;
+<div class="service-actions">
+    <button class="btn btn-primary" onclick="setPaymentMethod('${cartItem.id}', 'Efectivo')">💵 Efectivo</button>
+    <button class="btn btn-primary" onclick="setPaymentMethod('${cartItem.id}', 'Transferencia')">🏦 Transferencia</button>
+</div>`;
+                }
             }
 
-            // Arte capilar
-            if (message.includes('arte capilar') || message.includes('capilar') || message.includes('corte')) {
-                let respuesta = `💇‍♀️ **Arte Capilar:**
+            // Números directos (1-5)
+            if (/^[1-5]$/.test(message.trim())) {
+                const categoryKeys = Object.keys(spaInfo.servicios);
+                const selectedCategory = categoryKeys[parseInt(message) - 1];
+                
+                if (selectedCategory) {
+                    return generateServiceList(selectedCategory);
+                }
+            }
 
-`;
-                spaInfo.servicios.capilar.items.forEach(item => {
-                    respuesta += `• **${item.nombre}** - ${item.precio}
-  ${item.descripcion}
+            // Servicios generales
+            if (message.includes('servicios') || message.includes('servicio')) {
+                return `🎨 Nuestros servicios disponibles:
 
-`;
-                });
-                respuesta += `<button class="whatsapp-btn" onclick="agendarCitaWhatsApp()">📱 Agendar por WhatsApp</button>`;
-                return respuesta;
+Escribe el número para ver detalles:
+
+1️⃣ ${spaInfo.servicios.capilar.nombre}
+2️⃣ ${spaInfo.servicios.unas.nombre}  
+3️⃣ ${spaInfo.servicios.cejas.nombre}
+4️⃣ ${spaInfo.servicios.facial.nombre}
+5️⃣ ${spaInfo.servicios.masajes.nombre}
+
+También puedes escribir directamente lo que buscas, como: "corte", "manicura", "microblading", etc.`;
+            }
+
+            // Búsqueda por categorías específicas
+            if (message.includes('capilar') || message.includes('cabello') || message.includes('corte')) {
+                return generateServiceList('capilar');
+            }
+            
+            if (message.includes('manicura') || message.includes('pedicura') || message.includes('uñas')) {
+                return generateServiceList('unas');
+            }
+            
+            if (message.includes('cejas') || message.includes('pestañas') || message.includes('microblading')) {
+                return generateServiceList('cejas');
+            }
+            
+            if (message.includes('facial') || message.includes('limpieza') || message.includes('makeup')) {
+                return generateServiceList('facial');
+            }
+            
+            if (message.includes('masaje') || message.includes('relajante')) {
+                return generateServiceList('masajes');
             }
 
             // Precios
             if (message.includes('precio') || message.includes('precios') || message.includes('costo')) {
-                return `💰 **Nuestros precios:**
+                let preciosHTML = `💰 Lista de precios:
 
-✂️ **Arte Capilar:**
-• Cortes dama: Desde $5
-• Cortes hombre: Desde $4
-• Alisado keratina: Desde $45
+`;
+                
+                Object.entries(spaInfo.servicios).forEach(([key, category]) => {
+                    preciosHTML += `${category.emoji} ${category.nombre}:
+`;
+                    category.items.forEach(item => {
+                        preciosHTML += `• ${item.nombre}: ${item.precio}
+`;
+                    });
+                    preciosHTML += `
+`;
+                });
 
-💅 **Manicura & Pedicura:**
-• Manicura tradicional: Desde $4
-• Manicura en gel: Desde $8
-
-👁️ **Cejas & Pestañas:**
-• Microblading: $70
-• Lash lifting: $20
-
-<button class="whatsapp-btn" onclick="agendarCitaWhatsApp()">📱 Agendar por WhatsApp</button>`;
+                preciosHTML += `<div class="service-actions">
+    <button class="btn btn-whatsapp" onclick="agendarCitaWhatsApp()">📱 Agendar por WhatsApp</button>
+</div>`;
+                return preciosHTML;
             }
 
             // Horarios
             if (message.includes('hora') || message.includes('horario')) {
-                return `🕐 **Nuestros horarios:**
+                return `🕐 Nuestros horarios de atención:
 
-📅 **${spaInfo.horarios.dias}**
+📅 ${spaInfo.horarios.dias}
 🌅 Mañana: ${spaInfo.horarios.horario1}
 🌆 Tarde: ${spaInfo.horarios.horario2}
 
 🏠 ${spaInfo.horarios.descanso}
 
-<button class="whatsapp-btn" onclick="agendarCitaWhatsApp()">📱 Agendar mi cita</button>`;
+<div class="service-actions">
+    <button class="btn btn-whatsapp" onclick="agendarCitaWhatsApp()">📱 Agendar mi cita</button>
+</div>`;
             }
 
             // Ubicación
             if (message.includes('ubicacion') || message.includes('donde') || message.includes('direccion')) {
-                return `📍 **Nuestra ubicación:**
+                return `📍 Nuestra ubicación:
 
 🏢 ${spaInfo.ubicacion}
 📍 ${spaInfo.direccion}
 
-📞 **Contacto:**
+📞 Contacto:
 • Teléfono: ${spaInfo.telefono}
 • WhatsApp: ${spaInfo.telefono}
 • Email: ${spaInfo.email}
 
-<button class="whatsapp-btn" onclick="window.open('${spaInfo.mapsLink}', '_blank')" style="background: linear-gradient(135deg, #4285F4, #34A853);">🗺️ Ver en Google Maps</button>
-<button class="whatsapp-btn" onclick="agendarCitaWhatsApp()">📱 Escribir por WhatsApp</button>`;
+<div class="service-actions">
+    <button class="btn btn-secondary" onclick="window.open('${spaInfo.mapsLink}', '_blank')" style="background: linear-gradient(135deg, #4285F4, #34A853);">🗺️ Ver en Google Maps</button>
+    <button class="btn btn-whatsapp" onclick="agendarCitaWhatsApp()">📱 Escribir por WhatsApp</button>
+</div>`;
             }
 
             // Agendar citas
             if (message.includes('cita') || message.includes('reserva') || message.includes('agendar')) {
-                return `📅 **¡Perfecto! Te ayudo a agendar tu cita:**
+                return `📅 ¡Te ayudo a agendar tu cita!
 
-🎯 **Opciones disponibles:**
-• Escribe el servicio que quieres
-• Te muestro los detalles y precios
-• Agendas directamente por WhatsApp
+Tienes ${cart.length > 0 ? cart.length + ' servicios en tu carrito' : 'el carrito vacío'}.
 
-🕐 **Disponibilidad:**
+🎯 Opciones:
+• Selecciona servicios escribiendo números (1-5)
+• Escribe el nombre del servicio que quieres
+• Ve directo a WhatsApp para agendar
+
+🕐 Disponibilidad:
 ${spaInfo.horarios.dias} de ${spaInfo.horarios.horario1} y ${spaInfo.horarios.horario2}
 
-<button class="whatsapp-btn" onclick="agendarCitaWhatsApp()">📱 Agendar por WhatsApp</button>`;
+<div class="service-actions">
+    ${cart.length > 0 ? '<button class="btn btn-primary" onclick="openCart()">🛒 Ver mi carrito</button>' : ''}
+    <button class="btn btn-whatsapp" onclick="agendarCitaWhatsApp()">📱 Agendar por WhatsApp</button>
+</div>`;
             }
 
             // Saludos
             if (message.includes('hola') || message.includes('buenos') || message.includes('buenas') || message.includes('hi')) {
-                if (userName) {
-                    return `¡Hola de nuevo ${userName}! 👋 ¿En qué más puedo ayudarte?
+                const saludo = userName ? `¡Hola de nuevo ${userName}!` : '¡Hola!';
+                return `${saludo} 👋 Bienvenida a Diana Padilla Estética y Spa.
 
-✨ Servicios disponibles
-💰 Precios actualizados  
-📅 Agendar citas
-
-*Escribe "servicios" para ver todas las opciones* 😊`;
-                } else {
-                    return `¡Hola! 👋 Bienvenida a Diana Padilla Estética y Spa.
-
-**Formas fáciles de usar el chat:**
-• Escribe "servicios" para ver todo
+Formas fáciles de usar el chat:
+• Escribe números del 1 al 5 para ver servicios
 • Escribe "precios" para ver costos
 • Escribe "horarios" para disponibilidad
-• Describe lo que quieres: "corte de dama"
+• Describe directamente: "corte de dama", "manicura", etc.
 
-*Si tienes nombre, preséntate para una atención personalizada* 😊
+Si quieres atención personalizada, dime tu nombre 😊
 
-<button class="whatsapp-btn" onclick="agendarCitaWhatsApp()">📱 Contactar por WhatsApp</button>`;
-                }
+<div class="service-actions">
+    <button class="btn btn-whatsapp" onclick="agendarCitaWhatsApp()">📱 Contactar por WhatsApp</button>
+</div>`;
             }
 
             // Despedidas
             if (message.includes('gracias') || message.includes('perfecto') || message.includes('excelente')) {
-                return `¡De nada! 😊 Me alegra poder ayudarte.
+                return `¡De nada querida cliente! 😊 Me alegra poder ayudarte.
 
 Si necesitas agendar una cita o tienes más preguntas, no dudes en escribirme.
 
-<button class="whatsapp-btn" onclick="agendarCitaWhatsApp()">📱 Agendar por WhatsApp</button>`;
+<div class="service-actions">
+    <button class="btn btn-whatsapp" onclick="agendarCitaWhatsApp()">📱 Agendar por WhatsApp</button>
+</div>`;
             }
 
             if (message.includes('adios') || message.includes('hasta luego') || message.includes('chao')) {
@@ -957,20 +1272,65 @@ Recuerda que puedes contactarnos:
             const saludo = userName ? `¡Hola ${userName}!` : "¡Hola!";
             return `${saludo} 😊 Soy tu asistente de Diana Padilla Estética y Spa.
 
-**¿Qué necesitas?**
-• Escribe "servicios" para ver todo
+Qué puedes hacer:
+• Escribe números 1-5 para ver servicios
 • Escribe "precios" para costos
 • Describe lo que quieres: "corte", "manicura", etc.
 
-<button class="whatsapp-btn" onclick="agendarCitaWhatsApp()">📱 Contactar por WhatsApp</button>
+<div class="service-actions">
+    <button class="btn btn-whatsapp" onclick="agendarCitaWhatsApp()">📱 Contactar por WhatsApp</button>
+</div>
 
-*¿En qué te puedo ayudar?* 💄`;
+¿En qué te puedo ayudar? 💄`;
+        }
+
+        // Función para generar lista de servicios
+        function generateServiceList(categoryKey) {
+            const category = spaInfo.servicios[categoryKey];
+            let html = `${category.emoji} ${category.nombre}:
+
+`;
+
+            category.items.forEach(item => {
+                html += `
+<div class="service-card">
+    <div class="service-header">
+        <span class="service-title">${item.nombre}</span>
+        <span class="service-price">${item.precio}</span>
+    </div>
+    <div class="service-description">${item.descripcion}</div>
+    <div class="service-actions">
+        <button class="btn btn-primary" onclick="addToCart('${item.id}', '${item.nombre}', ${item.precio}, '${categoryKey}')">🛒 Agregar</button>
+        <button class="btn btn-secondary" onclick="addBotMessage('${item.descripcion}')">ℹ️ Más info</button>
+    </div>
+</div>`;
+            });
+
+            html += `
+<div style="margin-top: 1rem;">
+    <div class="service-actions">
+        <button class="btn btn-whatsapp" onclick="agendarCitaWhatsApp()">📱 Agendar por WhatsApp</button>
+        ${cart.length > 0 ? '<button class="btn btn-secondary" onclick="openCart()">🛒 Ver carrito (' + cart.length + ')</button>' : ''}
+    </div>
+</div>`;
+
+            return html;
         }
 
         // Inicializar chat
         document.addEventListener('DOMContentLoaded', function() {
             setTimeout(() => {
-                addBotMessage("¡Hola! 👋 Soy tu asistente virtual de Diana Padilla Estética y Spa.\n\n**Formas súper fáciles de usarme:**\n• Escribe \"servicios\" para ver todo\n• Escribe \"precios\" para ver costos  \n• Describe directo: \"corte de dama\"\n• Pregunta lo que necesites\n\n*Si te llamas de alguna forma, preséntate para atención personalizada* 😊\n\n¿En qué puedo ayudarte hoy?");
+                addBotMessage(`¡Hola! 👋 Soy tu asistente virtual de Diana Padilla Estética y Spa.
+
+Formas súper fáciles de usarme:
+• Escribe números del 1 al 5 para ver servicios
+• Escribe "precios" para ver costos  
+• Describe directo: "corte de dama", "manicura"
+• Pregunta lo que necesites
+
+Si tienes un nombre, preséntate para atención personalizada 😊
+
+¿En qué puedo ayudarte hoy?`);
             }, 1000);
         });
     </script>
