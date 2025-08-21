@@ -992,3 +992,423 @@ Ahora cuéntame: ¿Cómo te gustaría este servicio?
         <strong>${item.name}</strong> - ${item.price}
         ${item.description ? `<br><small>📝 ${item.description}</small>` : ''}
         ${item.paymentMethod ? `<br><small>💳 ${item.paymentMethod}</small>` : ''}
+    </div>
+    <button class="btn btn-secondary" onclick="removeFromCart('${item.id}')" style="padding: 0.5rem;">❌</button>
+</div>`;
+            });
+
+            cartHTML += `
+</div>
+
+<div class="service-actions">
+    <button class="btn btn-primary" onclick="sendQuickMessage('servicios')">➕ Agregar más</button>
+    <button class="btn btn-whatsapp" onclick="finalizarPedido()">📱 Finalizar pedido</button>
+    <button class="btn btn-secondary" onclick="clearCart()">🗑️ Vaciar carrito</button>
+</div>`;
+
+            addBotMessage(cartHTML);
+        }
+
+        // Función para eliminar del carrito
+        function removeFromCart(serviceId) {
+            cart = cart.filter(item => item.id !== serviceId);
+            updateCartCounter();
+            addBotMessage(personalizeMessage("✅ Servicio eliminado del carrito"));
+            if (cart.length > 0) {
+                openCart();
+            }
+        }
+
+        // Función para vaciar carrito
+        function clearCart() {
+            cart = [];
+            updateCartCounter();
+            addBotMessage(personalizeMessage("🗑️ Carrito vaciado. ¡Puedes empezar de nuevo!"));
+        }
+
+        // Función para finalizar pedido
+        function finalizarPedido() {
+            if (cart.length === 0) {
+                addBotMessage(personalizeMessage("Tu carrito está vacío. Agrega servicios primero."));
+                return;
+            }
+
+            let message = `¡Hola! Soy ${userName || 'un cliente'} y me gustaría agendar los siguientes servicios:\n\n`;
+            
+            cart.forEach(item => {
+                message += `• ${item.name} - ${item.price}\n`;
+                if (item.description) {
+                    message += `  Detalles: ${item.description}\n`;
+                }
+                if (item.paymentMethod) {
+                    message += `  Pago: ${item.paymentMethod}\n`;
+                }
+            });
+
+            const whatsappUrl = `https://wa.me/${spaInfo.whatsapp}?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+            
+            cart = [];
+            updateCartCounter();
+            
+            addBotMessage(personalizeMessage("✅ Te he redirigido a WhatsApp para completar tu reserva. ¡Gracias por elegirnos!"));
+        }
+
+        // Función para agregar mensaje del bot
+        function addBotMessage(message) {
+            const chatMessages = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message bot-message';
+            
+            const now = new Date();
+            const time = now.toLocaleTimeString('es-EC', { hour: '2-digit', minute: '2-digit' });
+            
+            messageDiv.innerHTML = `
+                <div class="message-avatar">💄</div>
+                <div>
+                    <div class="message-content">${message}</div>
+                    <div class="message-time">${time}</div>
+                </div>
+            `;
+            
+            chatMessages.appendChild(messageDiv);
+            scrollToBottom();
+        }
+
+        // Función para agregar mensaje del usuario
+        function addUserMessage(message) {
+            const chatMessages = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message user-message';
+            
+            const now = new Date();
+            const time = now.toLocaleTimeString('es-EC', { hour: '2-digit', minute: '2-digit' });
+            
+            messageDiv.innerHTML = `
+                <div class="message-avatar">👤</div>
+                <div>
+                    <div class="message-content">${message}</div>
+                    <div class="message-time">${time}</div>
+                </div>
+            `;
+            
+            chatMessages.appendChild(messageDiv);
+            scrollToBottom();
+        }
+
+        // Función para scroll automático
+        function scrollToBottom() {
+            const chatMessages = document.getElementById('chatMessages');
+            setTimeout(() => {
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 100);
+        }
+
+        // Función para mostrar indicador de escritura
+        function showTypingIndicator() {
+            const chatMessages = document.getElementById('chatMessages');
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'message bot-message typing-indicator';
+            typingDiv.innerHTML = `
+                <div class="message-avatar">💄</div>
+                <div class="typing-dots">
+                    <span class="typing-dot"></span>
+                    <span class="typing-dot"></span>
+                    <span class="typing-dot"></span>
+                </div>
+            `;
+            chatMessages.appendChild(typingDiv);
+            scrollToBottom();
+            
+            return typingDiv;
+        }
+
+        // Función para procesar mensaje
+        function processMessage(message) {
+            const lowerMessage = message.toLowerCase().trim();
+            
+            // Extraer nombre si es posible
+            const extractedName = extractUserName(message);
+            if (extractedName && !userName) {
+                userName = extractedName;
+            }
+
+            // Si estamos esperando descripción
+            if (waitingForDescription) {
+                const cartItem = cart.find(item => item.id === waitingForDescription);
+                if (cartItem) {
+                    cartItem.description = message;
+                    waitingForDescription = null;
+                    
+                    addBotMessage(personalizeMessage(`¡Perfecto! He guardado tus preferencias.
+
+¿Cómo te gustaría pagar por este servicio?
+
+<div class="service-actions">
+    <button class="btn btn-primary" onclick="setPaymentMethod('${cartItem.id}', 'Efectivo')">💵 Efectivo</button>
+    <button class="btn btn-primary" onclick="setPaymentMethod('${cartItem.id}', 'Transferencia')">📱 Transferencia</button>
+    <button class="btn btn-primary" onclick="setPaymentMethod('${cartItem.id}', 'Tarjeta')">💳 Tarjeta</button>
+</div>`));
+                    
+                    waitingForPayment = cartItem.id;
+                    return;
+                }
+            }
+
+            // Respuestas según palabras clave
+            if (lowerMessage.includes('hola') || lowerMessage.includes('hi') || lowerMessage.includes('buenas')) {
+                const greeting = isFirstGreeting ? 
+                    personalizeMessage(`¡Hola! 👋 ¡Bienvenida a Diana Padilla Estética & Spa!
+
+Soy tu asistente virtual y estoy aquí para ayudarte. Puedes:
+
+🎨 Ver nuestros servicios
+💰 Consultar precios
+🕐 Conocer horarios
+📍 Ver ubicación
+📅 Agendar una cita
+
+¿Qué te gustaría hacer hoy?`) : 
+                    personalizeMessage("¡Hola de nuevo! ¿En qué más puedo ayudarte?");
+                
+                addBotMessage(greeting);
+                isFirstGreeting = false;
+                return;
+            }
+
+            if (lowerMessage === '1' || lowerMessage.includes('servicio') || lowerMessage.includes('tratamiento')) {
+                mostrarCategorias();
+                return;
+            }
+
+            if (lowerMessage === '2' || lowerMessage.includes('precio') || lowerMessage.includes('costo') || lowerMessage.includes('cuánto')) {
+                mostrarCategorias();
+                return;
+            }
+
+            if (lowerMessage === '3' || lowerMessage.includes('horario') || lowerMessage.includes('hora') || lowerMessage.includes('abierto')) {
+                mostrarHorarios();
+                return;
+            }
+
+            if (lowerMessage === '4' || lowerMessage.includes('ubicación') || lowerMessage.includes('dirección') || lowerMessage.includes('dónde')) {
+                mostrarUbicacion();
+                return;
+            }
+
+            if (lowerMessage === '5' || lowerMessage.includes('agendar') || lowerMessage.includes('cita') || lowerMessage.includes('reserva')) {
+                agendarCitaWhatsApp();
+                return;
+            }
+
+            // Categorías específicas
+            if (lowerMessage.includes('capilar') || lowerMessage.includes('pelo') || lowerMessage.includes('cabello')) {
+                mostrarServiciosCategoria('capilar');
+                return;
+            }
+
+            if (lowerMessage.includes('uña') || lowerMessage.includes('manicura') || lowerMessage.includes('pedicura')) {
+                mostrarServiciosCategoria('unas');
+                return;
+            }
+
+            if (lowerMessage.includes('ceja') || lowerMessage.includes('pestaña')) {
+                mostrarServiciosCategoria('cejas');
+                return;
+            }
+
+            if (lowerMessage.includes('facial') || lowerMessage.includes('limpieza') || lowerMessage.includes('piel')) {
+                mostrarServiciosCategoria('facial');
+                return;
+            }
+
+            if (lowerMessage.includes('masaje') || lowerMessage.includes('relaja')) {
+                mostrarServiciosCategoria('relajacion');
+                return;
+            }
+
+            if (lowerMessage.includes('carrito') || lowerMessage.includes('pedido')) {
+                openCart();
+                return;
+            }
+
+            // Respuesta por defecto
+            addBotMessage(personalizeMessage(`No entendí tu mensaje. Por favor, elige una opción:
+
+1️⃣ Ver servicios
+2️⃣ Consultar precios  
+3️⃣ Ver horarios
+4️⃣ Ubicación
+5️⃣ Agendar cita
+
+O escribe palabras como: servicios, precios, horarios, ubicación, cita`));
+        }
+
+        // Función para mostrar categorías
+        function mostrarCategorias() {
+            let mensaje = personalizeMessage(`✨ Nuestras categorías de servicios:
+
+Selecciona la categoría que te interesa:`);
+
+            mensaje += `
+<div class="quick-actions">`;
+
+            for (let key in spaInfo.servicios) {
+                const categoria = spaInfo.servicios[key];
+                mensaje += `<div class="quick-action" onclick="mostrarServiciosCategoria('${key}')">${categoria.emoji} ${categoria.nombre}</div>`;
+            }
+
+            mensaje += `</div>`;
+            
+            addBotMessage(mensaje);
+        }
+
+        // Función para mostrar servicios de una categoría
+        function mostrarServiciosCategoria(categoria) {
+            const cat = spaInfo.servicios[categoria];
+            if (!cat) return;
+
+            let mensaje = `${cat.emoji} ${cat.nombre}
+
+Estos son nuestros servicios:`;
+
+            cat.items.forEach(item => {
+                mensaje += `
+<div class="service-card">
+    <div class="service-header">
+        <span class="service-title">${item.nombre}</span>
+        <span class="service-price">${item.precio}</span>
+    </div>
+    <div class="service-description">${item.descripcion}</div>
+    <div class="service-actions">
+        <button class="btn btn-primary" onclick="addToCart('${item.id}', '${item.nombre}', '${item.precio}', '${categoria}')">🛒 Agregar al carrito</button>
+        <button class="btn btn-whatsapp" onclick="agendarServicioDirecto('${item.nombre}', '${item.precio}')">📱 Agendar ahora</button>
+    </div>
+</div>`;
+            });
+
+            addBotMessage(mensaje);
+        }
+
+        // Función para mostrar horarios
+        function mostrarHorarios() {
+            const mensaje = personalizeMessage(`🕐 Nuestros horarios de atención:
+
+📅 ${spaInfo.horarios.dias}
+🌅 Mañana: ${spaInfo.horarios.horario1}
+🌆 Tarde: ${spaInfo.horarios.horario2}
+❌ ${spaInfo.horarios.descanso}
+
+¿Te gustaría agendar una cita?
+
+<div class="service-actions">
+    <button class="btn btn-whatsapp" onclick="agendarCitaWhatsApp()">📅 Agendar cita</button>
+    <button class="btn btn-secondary" onclick="sendQuickMessage('servicios')">🎨 Ver servicios</button>
+</div>`);
+
+            addBotMessage(mensaje);
+        }
+
+        // Función para mostrar ubicación
+        function mostrarUbicacion() {
+            const mensaje = personalizeMessage(`📍 Nuestra ubicación:
+
+🏢 ${spaInfo.nombre}
+📌 ${spaInfo.direccion}
+🌆 ${spaInfo.ubicacion}
+
+<div class="service-actions">
+    <button class="btn btn-primary" onclick="window.open('${spaInfo.mapsLink}', '_blank')">🗺️ Ver en Google Maps</button>
+    <button class="btn btn-whatsapp" onclick="agendarCitaWhatsApp()">📅 Agendar cita</button>
+</div>
+
+📞 Teléfono: ${spaInfo.telefono}
+📧 Email: ${spaInfo.email}`);
+
+            addBotMessage(mensaje);
+        }
+
+        // Función para agendar cita directa con WhatsApp
+        function agendarCitaWhatsApp() {
+            const mensaje = personalizeMessage(`📅 ¡Perfecto! Te voy a conectar con nuestro WhatsApp para agendar tu cita.
+
+Presiona el botón para chatear directamente:
+
+<div class="service-actions">
+    <button class="btn btn-whatsapp" onclick="window.open('https://wa.me/${spaInfo.whatsapp}?text=Hola,%20me%20gustaría%20agendar%20una%20cita', '_blank')">
+        📱 Abrir WhatsApp
+    </button>
+</div>
+
+También puedes llamarnos al: ${spaInfo.telefono}`);
+
+            addBotMessage(mensaje);
+        }
+
+        // Función para agendar servicio directo
+        function agendarServicioDirecto(servicio, precio) {
+            const message = `Hola, me gustaría agendar el servicio: ${servicio} (${precio})`;
+            const whatsappUrl = `https://wa.me/${spaInfo.whatsapp}?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+        }
+
+        // Función para enviar mensaje rápido
+        function sendQuickMessage(message) {
+            addUserMessage(message);
+            
+            const typingIndicator = showTypingIndicator();
+            
+            setTimeout(() => {
+                typingIndicator.remove();
+                processMessage(message);
+            }, 1000);
+        }
+
+        // Función para enviar mensaje
+        function sendMessage() {
+            const input = document.getElementById('messageInput');
+            const message = input.value.trim();
+            
+            if (message === '') return;
+            
+            addUserMessage(message);
+            input.value = '';
+            
+            const typingIndicator = showTypingIndicator();
+            
+            setTimeout(() => {
+                typingIndicator.remove();
+                processMessage(message);
+            }, 1000);
+        }
+
+        // Función para manejar tecla Enter
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        // Inicialización
+        document.addEventListener('DOMContentLoaded', function() {
+            // Focus en el input al cargar
+            document.getElementById('messageInput').focus();
+            
+            // Mensaje de bienvenida inicial
+            setTimeout(() => {
+                addBotMessage(`¡Hola! 👋 Bienvenida a Diana Padilla Estética & Spa ✨
+
+Soy tu asistente virtual y estoy aquí para ayudarte con:
+
+1️⃣ Ver servicios y tratamientos
+2️⃣ Consultar precios
+3️⃣ Conocer horarios
+4️⃣ Ver ubicación
+5️⃣ Agendar una cita
+
+Puedes escribir un número del 1 al 5 o hacer cualquier pregunta. ¿Cómo puedo ayudarte hoy?`);
+            }, 500);
+        });
+    </script>
+</body>
+</html>
